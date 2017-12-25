@@ -40,7 +40,7 @@
 - [backend 后端源码](./backend)
 - [frontend 前端源码](./frontend)
 
-## 交流 & 讨论
+## 技术支持 & 交流 & 讨论
 <p align="center">
   <img alt="QQ群" src="./docs/qq.png"/>
 </p>
