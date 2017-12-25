@@ -1,0 +1,136 @@
+自动校验推送配置:推送验证目标
+
+
+列表：
+http://localhost:8080/xpress/repository/validateTargets/list
+req:
+{
+	"vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046",
+	"ppathval":"",
+	"ttype":"",
+	"nodetype":"",
+	"targetname":""
+}
+res:
+{
+    "sta": 1,
+    "data":
+    {
+        "result":
+        [
+            {
+                "id": "sdsd",
+                "ppathval": "pdir/测试WF",
+                "isDel": "0",
+                "nodetype": "71",
+                "wfid": 23,
+                "ttype": "w",
+                "targetname": "测试WF",
+                "isValid": "1",
+                "targetid": 23,
+                "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增：
+http://localhost:8080/xpress/repository/validateTargets/create
+vconfid： conf处的id,
+ttype: 工作流为w,节点为i
+targetid: 为对上对应的value值去除前面w_或i_部分的整数值
+其它部分同validateTargetv.txt新增
+req:
+{
+    "ppathval": "pdir/测试WF",
+    "nodetype": "71",
+    "wfid": 23,
+    "ttype": "w",
+    "targetname": "测试WF",
+    "targetid": 23,
+    "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data":
+    {
+        "id": "43e0a94e-4f23-1035-bb04-3177c164b046",
+        "isDel": "",
+        "isValid": "",
+        "nodetype": "71",
+        "ppathval": "pdir/测试WF1",
+        "targetid": 24,
+        "targetname": "测试WF1",
+        "ttype": "w",
+        "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046",
+        "wfid": 23
+    }
+}
+
+修改：
+http://localhost:8080/xpress/repository/validateTargets/update
+req:
+{}
+res:
+{}
+
+
+根据主键删除：
+http://localhost:8080/xpress/repository/validateTargets/delete
+req:
+{
+    "id": "6c7e41dc-4f23-1035-bb04-3177c164b046"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data":
+    {
+        "id": "6c7e41dc-4f23-1035-bb04-3177c164b046",
+        "isDel": "",
+        "isValid": "",
+        "nodetype": "",
+        "ppathval": "",
+        "targetid": 0,
+        "targetname": "",
+        "ttype": "",
+        "vconfid": "",
+        "wfid": 0
+    }
+}
+
+根据关系键删除：
+http://localhost:8080/xpress/repository/validateTargets/deleteByRelId
+targetid 可不存在
+vconfid  必填
+req:
+{
+	"targetid": 23,
+    "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data":
+    {
+        "id": "",
+        "isDel": "",
+        "isValid": "",
+        "nodetype": "",
+        "ppathval": "",
+        "targetid": 23,
+        "targetname": "",
+        "ttype": "",
+        "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046",
+        "wfid": 0
+    }
+}

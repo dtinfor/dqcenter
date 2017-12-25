@@ -1,0 +1,51 @@
+CREATE VIEW
+    V_DW_TREE_SUB
+    (
+        NAME,
+        ID,
+        PID,
+        TYPE,
+        ISPARENT,
+        ICONSKIN,
+        INSTID
+    ) AS
+SELECT
+    name,
+    '71_'||ID id,
+    pid,
+    type,
+    isparent,
+    iconskin,
+    instid
+FROM
+    v_dw_tree
+WHERE
+    pid='0'
+UNION
+SELECT
+    task_name                  AS name,
+    TO_CHAR(task_id)           AS id,
+    task_type||'_'||subject_id AS pid,
+    task_type                  AS type,
+    1                          AS isparent,
+    'icon'||task_type          AS iconSkin,
+    5                          AS instid
+FROM
+    OPB_TASK a
+WHERE
+    a.task_type=71
+AND a.is_reusable=1
+UNION
+SELECT
+    CONVERT(c.instance_name, 'ZHS16GBK', 'UTF8') AS name,
+    TO_CHAR(c.task_id)                           AS id,
+    TO_CHAR(c.workflow_id)                       AS pid,
+    c.task_type                                  AS type,
+    0                                            AS isparent,
+    'icon'||c.task_type                          AS iconSkin,
+    c.instance_id                                AS instid
+FROM
+    opb_task_inst c,
+    opb_task b
+WHERE
+    c.workflow_id=b.task_id;

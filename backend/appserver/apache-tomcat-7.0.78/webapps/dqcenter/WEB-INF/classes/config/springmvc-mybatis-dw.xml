@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans               http://www.springframework.org/schema/beans/spring-beans-3.2.xsd               http://www.springframework.org/schema/context               http://www.springframework.org/schema/context/spring-context-3.2.xsd               http://www.springframework.org/schema/jdbc               http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd              http://www.springframework.org/schema/task              http://www.springframework.org/schema/task/spring-task-3.2.xsd             http://www.springframework.org/schema/mvc    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd     http://www.springframework.org/schema/cache    http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
+	<!-- MyBatis sqlSessionFactory1 -->
+	<!-- system mapper -->
+	<bean id="DwTreeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory2" />
+		<property name="mapperInterface" value="com.powerdq.dao.repository.DwTreeMapper" />
+	</bean>
+	<bean id="OpbTaskInstRunMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory2" />
+		<property name="mapperInterface"
+			value="com.powerdq.dao.repository.OpbTaskInstRunMapper" />
+	</bean>
+	<bean id="TaskInstRunMonitorMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory2" />
+		<property name="mapperInterface"
+			value="com.powerdq.dao.repository.TaskInstRunMonitorMapper" />
+	</bean>
+	<bean id="OpbWflowRunMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory2" />
+		<property name="mapperInterface" value="com.powerdq.dao.repository.OpbWflowRunMapper" />
+	</bean>
+</beans>

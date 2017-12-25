@@ -1,0 +1,261 @@
+CREATE VIEW
+    V_MONITOR_TREE
+    (
+        PID,
+        OPID,
+        PNAME,
+        ID,
+        OID,
+        NAME,
+        LEVELN,
+        START_TIME,
+        END_TIME,
+        RUN_STATUS_CODE,
+        RUN_STATUS_NAME,
+        NODETYPE,
+        COSTT
+    ) AS
+SELECT
+    -1||'r'              pid,
+    -1                   opid,
+    ''                   pname,
+    a.RECID||'r'         id ,
+    a.RECID              oid ,
+    a.REPOSITORY_NAME AS name,
+    1                 AS leveln ,
+    NULL                 start_time,
+    NULL                 end_time,
+    -100                 run_status_code,
+    ''                   run_status_name,
+    'reps'               nodetype,
+    '0'                  costt
+FROM
+    REP_REPOSIT_INFO a
+UNION
+SELECT
+    b.RECID||'r'         pid ,
+    b.RECID              opid ,
+    b.REPOSITORY_NAME    pname,
+    c.server_id||'i'     id,
+    c.server_id          oid,
+    c.server_name     AS name ,
+    2                    leveln ,
+    NULL                 start_time,
+    NULL                 end_time,
+    -100                 run_status_code,
+    ''                   run_status_name,
+    'inte'               nodetype,
+    '0'                  costt
+FROM
+    REP_REPOSIT_INFO b,
+    OPB_SERVER_INFO c
+UNION
+SELECT
+    server_id||'i'     pid,
+    server_id          opid,
+    server_name        pname,
+    subject_id||'s' AS id ,
+    subject_id      AS oid,
+    subj_name       AS name ,
+    3                  leveln ,
+    NULL               start_time,
+    NULL               end_time,
+    -100               run_status_code,
+    ''                 run_status_name,
+    'subj'             nodetype,
+    '0'                costt
+FROM
+    (
+        SELECT
+            a.server_id,
+            a.server_name,
+            a.subject_id,
+            b.subj_name,
+            a.workflow_id,
+            a.workflow_name,
+            MAX(a.start_time)
+        FROM
+            OPB_WFLOW_RUN a
+        LEFT JOIN
+            opb_subject b
+        ON
+            a.subject_id = b.subj_id
+        GROUP BY
+            a.server_id,
+            a.server_name,
+            a.subject_id,
+            b.subj_name,
+            a.workflow_id,
+            a.workflow_name) a1
+UNION
+SELECT
+    subject_id||'s'  AS pid,
+    subject_id       AS opid,
+    subj_name        AS pname ,
+    workflow_id||'w'    id,
+    workflow_id         oid,
+    workflow_name       name,
+    4                   leveln ,
+    NULL                start_time,
+    NULL                end_time,
+    -100                run_status_code,
+    ''                  run_status_name,
+    'wrkf'              nodetype,
+    '0'                 costt
+FROM
+    (
+        SELECT
+            a.subject_id,
+            b.subj_name,
+            a.workflow_id,
+            a.workflow_name,
+            MAX(a.start_time)
+        FROM
+            OPB_WFLOW_RUN a
+        LEFT JOIN
+            opb_subject b
+        ON
+            a.subject_id = b.subj_id
+        WHERE
+            a.start_time > SYSDATE-30
+        GROUP BY
+            a.server_id,
+            a.server_name,
+            a.subject_id,
+            b.subj_name,
+            a.workflow_id,
+            a.workflow_name)a2
+UNION
+SELECT
+    pid,
+    opid,
+    pname,
+    id,
+    oid,
+    name,
+    leveln,
+    start_time,
+    end_time,
+    run_status_code,
+    run_status_name,
+    nodetype,
+    TRUNC((end_time - start_time)* 24)|| ':'|| mod(TRUNC((end_time - start_time)* 24*60),60)|| ':'
+    || ROUND(mod(TO_NUMBER(end_time - start_time)* 24 * 60 * 60 ,60)) costt
+FROM
+    (
+        SELECT
+            rank() over(partition BY d.workflow_id ORDER BY d.start_time) topnum,
+            d.workflow_id || 'w'                                          pid,
+            d.workflow_id                                                 opid,
+            d.workflow_name                                               pname,
+            d.workflow_run_id || 'u'                                      id,
+            d.workflow_run_id                                             oid,
+            d.workflow_name                                               name,
+            5                                                             leveln,
+            d.start_time,
+            d.end_time,
+            d.run_status_code,
+            CASE
+                WHEN d.run_status_code = 1
+                THEN 'succeed'
+                WHEN d.run_status_code = 3
+                THEN 'failed'
+                WHEN d.run_status_code = 4
+                THEN 'stop'
+                WHEN d.run_status_code = 5
+                THEN 'abort'
+                WHEN d.run_status_code = 6
+                THEN 'running'
+            END    run_status_name,
+            'wrkr' nodetype
+        FROM
+            OPB_WFLOW_RUN d
+        WHERE
+            d.start_time > SYSDATE - 30 )
+WHERE
+    topnum<6
+UNION
+SELECT
+    e.workflow_run_id||'u'                    pid,
+    e.workflow_run_id                         opid,
+    CONVERT(task.task_name,'ZHS16GBK','UTF8') pname,
+    CASE
+        WHEN e.child_run_id!=0
+        THEN e.child_run_id
+        ELSE e.instance_id
+    END||'n' AS id,
+    CASE
+        WHEN e.child_run_id!=0
+        THEN e.child_run_id
+        ELSE e.instance_id
+    END                                        AS oid,
+    CONVERT(E.instance_name,'ZHS16GBK','UTF8') AS name,
+    6                                          AS leveln,
+    e.start_time,
+    e.end_time,
+    e.run_status_code,
+    CASE
+        WHEN e.run_status_code = 1
+        THEN 'succeed'
+        WHEN e.run_status_code = 3
+        THEN 'failed'
+        WHEN e.run_status_code = 4
+        THEN 'stop'
+        WHEN e.run_status_code = 5
+        THEN 'abort'
+        WHEN e.run_status_code = 6
+        THEN 'running'
+    END                  run_status_name ,
+    TO_CHAR(e.task_type) nodetype,
+    '0'                  costt
+FROM
+    OPB_TASK_INST_RUN e
+LEFT JOIN
+    opb_task task
+ON
+    e.subject_id=task.subject_id
+AND e.workflow_id=task.task_id
+AND task.task_type=71
+WHERE
+    e.worklet_run_id =0
+AND E.TASK_TYPE!=62
+AND e.start_time>SYSDATE-30
+UNION
+SELECT
+    F1.CHILD_RUN_ID||'n'                        AS pid,
+    F1.CHILD_RUN_ID                             AS opid,
+    CONVERT(f1.instance_name,'ZHS16GBK','UTF8')    pname,
+    F2.Worklet_Run_Id||'t'                      AS id,
+    F2.Worklet_Run_Id                           AS oid,
+    CONVERT(f2.instance_name,'ZHS16GBK','UTF8') AS name,
+    7                                           AS leveln,
+    f2.start_time,
+    f2.end_time,
+    f2.run_status_code,
+    CASE
+        WHEN f2.run_status_code = 1
+        THEN 'succeed'
+        WHEN f2.run_status_code = 3
+        THEN 'failed'
+        WHEN f2.run_status_code = 4
+        THEN 'stop'
+        WHEN f2.run_status_code = 5
+        THEN 'abort'
+        WHEN f2.run_status_code = 6
+        THEN 'running'
+    END                   run_status_name,
+    TO_CHAR(f2.task_type) nodetype,
+    '0'                   costt
+FROM
+    OPB_TASK_INST_RUN F1
+LEFT JOIN
+    OPB_TASK_INST_RUN F2
+ON
+    f2.task_type!=62
+AND f1.subject_id=f2.subject_id
+AND f1.workflow_id=f2.workflow_id
+AND f1.workflow_run_id=f2.workflow_run_id
+AND f1.child_run_id=f2.worklet_run_id
+WHERE
+    f1.task_type=70
+AND F1.start_time>SYSDATE-30;

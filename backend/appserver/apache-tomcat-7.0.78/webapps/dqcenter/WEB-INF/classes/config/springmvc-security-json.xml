@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+            http://www.springframework.org/schema/context  
+            http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+            http://www.springframework.org/schema/jdbc  
+            http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd 
+            http://www.springframework.org/schema/task 
+            http://www.springframework.org/schema/task/spring-task-3.2.xsd
+            http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+			http://www.springframework.org/schema/cache
+			http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
+			http://www.springframework.org/schema/security
+			http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+
+	<sec:http auto-config='false' use-expressions="true"
+		entry-point-ref="http403EntryPoint">
+
+		<!-- <sec:logout invalidate-session="true" logout-url="/logout" /> -->
+		<sec:custom-filter position="LOGOUT_FILTER" ref="restLogoutFilter" />
+
+		<sec:access-denied-handler ref="customAccessDeniedHandler" />
+
+		<sec:custom-filter ref="customUsernamePasswordAuthenticationFilter"
+			position="FORM_LOGIN_FILTER " />
+
+		<!-- <sec:form-login login-page="/login" -->
+		<!-- authentication-failure-url="/login?error=true" default-target-url="/page/business" 
+			/> -->
+		<!-- <sec:access-denied-handler error-page="/common/error-404.jsp" /> -->
+
+		<sec:custom-filter ref="faSecurityInterceptor"
+			before="FILTER_SECURITY_INTERCEPTOR" />
+
+	</sec:http>
+
+	<bean id="restLogoutFilter"
+		class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<constructor-arg>
+			<bean class="com.powerdq.comm.security.CustomLogoutSuccessHandler" />
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+				<bean
+					class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- <bean id="http403EntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" 
+		/> -->
+	<!-- 自定义权限不足处理程序 -->
+	<bean id="http403EntryPoint"
+		class="com.powerdq.comm.security.CustomAuthenticationEntryPoint" />
+	<bean id="customAccessDeniedHandler" class="com.powerdq.comm.security.CustomAccessDeniedHandler">
+		<property name="errorPage" value="/common/error-404.jsp"></property>
+	</bean>
+
+	<bean id="faSecurityInterceptor" class="com.powerdq.comm.security.FaSecurityInterceptor">
+		<property name="authenticationManager" ref="faAuthenticationManager" />
+		<property name="accessDecisionManager" ref="faAccessDecisionManager" />
+		<property name="securityMetadataSource" ref="faSecurityMetadataSource" />
+	</bean>
+
+	<sec:authentication-manager alias="faAuthenticationManager">
+		<sec:authentication-provider
+			user-service-ref="faUserDetailsService">
+			<sec:password-encoder hash="md5" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+
+	<bean id="faUserDetailsService" class="com.powerdq.comm.security.FaUserDetailsService"></bean>
+	<!-- 访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源 -->
+	<bean id="faAccessDecisionManager" class="com.powerdq.comm.security.FaAccessDecisionManager"></bean>
+	<!-- 资源源数据定义，即定义某一资源可以被哪些角色访问 -->
+	<bean id="faSecurityMetadataSource" class="com.powerdq.comm.security.FaSecurityMetadataSource">
+		<constructor-arg ref="roleService"></constructor-arg>
+	</bean>
+
+	<!-- <sec:http auto-config="false" use-expressions="true" entry-point-ref="http403EntryPoint"> 
+		<sec:intercept-url pattern="/logs/**" access="denyAll" /> <sec:custom-filter 
+		ref="customUsernamePasswordAuthenticationFilter" position="FORM_LOGIN_FILTER 
+		" /> <sec:logout invalidate-session="true" logout-success-url="/LogoutSuccessful.htm" 
+		delete-cookies="true" /> <sec:session-management> <sec:concurrency-control 
+		max-sessions="1" error-if-maximum-exceeded="true" /> </sec:session-management> 
+		<sec:access-denied-handler error-page="/accessDenied.htm" /> </sec:http> -->
+
+	<bean id="customUsernamePasswordAuthenticationFilter"
+		class="com.powerdq.comm.security.CustomUsernamePasswordAuthenticationFilter">
+		<property name="authenticationManager" ref="faAuthenticationManager" />
+		<property name="authenticationSuccessHandler" ref="customSuccessHandler" />
+		<property name="authenticationFailureHandler" ref="failureHandler" />
+		<property name="filterProcessesUrl" value="/j_spring_security_check" />
+		<property name="usernameParameter" value="j_username" />
+		<property name="passwordParameter" value="j_password" />
+	</bean>
+
+	<bean id="customSuccessHandler"
+		class="com.powerdq.comm.security.CustomAuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/page/business" />
+		<!-- <property name="targetUrlParameter" value="/LoginSuccessful.htm" /> -->
+	</bean>
+
+	<!-- <bean id="failureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"> 
+		<property name="defaultFailureUrl" value="/login?error=true" /> </bean> -->
+	<bean id="failureHandler"
+		class="com.powerdq.comm.security.CustomAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/login?error=true" />
+	</bean>
+
+</beans>
+			
+		

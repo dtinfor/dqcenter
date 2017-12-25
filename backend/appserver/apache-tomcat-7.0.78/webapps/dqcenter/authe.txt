@@ -1,0 +1,56 @@
+
+登录：
+http://localhost:8080/xpress/j_spring_security_check
+req:
+{
+	"j_username":"DefUser",
+	"j_password":"111111"
+}
+res:
+{"sta":0,"data":"用户名或密码不正确","msg":"操作失败！"}
+或者
+{
+	"sta": 1,
+	"data": [{
+		"id": "100000",
+		"iconCode": "icon-cogs",
+		"menuCode": "",
+		"menuOrder": 1,
+		"hasChild": "1",
+		"menuLevel": "1",
+		"menuPath": "",
+		"menuName": "系统管理"
+	},
+	{
+		"id": "100002",
+		"iconCode": "",
+		"menuCode": "MENU_USER",
+		"menuOrder": 1,
+		"hasChild": "0",
+		"menuLevel": "2",
+		"menuPath": "/system/user/",
+		"menuName": "用户管理",
+		"superId": "100000"
+	}],
+	"msg": "操作成功！"
+}
+
+请求中情况：  如：
+http://localhost:8080/xpress/system/role/
+req:
+{}
+res:
+{"sta":0,"data":"访问的资源需要权限","msg":"操作失败！"}
+
+{"sta":0,"data":"权限认证失败！-------权限不足","msg":"操作失败！"}
+
+其它为正确的情况
+
+
+退出：
+http://localhost:8080/xpress/j_spring_security_logout
+req:
+无
+res:
+{"sta":1,"data":"退出成功!","msg":"操作成功！"}
+

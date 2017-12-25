@@ -1,0 +1,119 @@
+CREATE VIEW
+    V_DW_TREE
+    (
+        NAME,
+        ID,
+        PID,
+        TYPE,
+        ISPARENT,
+        ICONSKIN,
+        INSTID
+    ) AS
+SELECT
+    subj_name        AS name,
+    TO_CHAR(subj_id) AS id,
+    '0'              AS pid,
+    0                AS type,
+    1                AS isparent,
+    'pIcon01'        AS iconSkin,
+    0                AS instid
+FROM
+    opb_subject t
+UNION
+SELECT DISTINCT
+    CASE
+        WHEN task_type=58
+        THEN '任务'
+        WHEN task_type=68
+        THEN '会话'
+        WHEN task_type=70
+        THEN '工作集'
+        WHEN task_type=71
+        THEN '工作流'
+    END                        AS name,
+    task_type||'_'||subject_id AS id,
+    TO_CHAR(subject_id)        AS pid,
+    CASE
+        WHEN task_type=70
+        THEN 700
+        WHEN task_type=71
+        THEN 711
+        ELSE task_type
+    END       AS type,
+    1         AS isparent ,
+    'pIcon02' AS iconSkin,
+    1         AS instid
+FROM
+    OPB_TASK a
+WHERE
+    a.is_reusable=1
+UNION
+SELECT
+    task_name                  AS name,
+    TO_CHAR(task_id)           AS id,
+    task_type||'_'||subject_id AS pid,
+    task_type                  AS type,
+    0                          AS isparent,
+    'icon'||task_type          AS iconSkin,
+    2                          AS instid
+FROM
+    OPB_TASK a
+WHERE
+    a.task_type=58
+AND a.is_reusable=1
+UNION
+SELECT
+    task_name                  AS name,
+    TO_CHAR(task_id)           AS id,
+    task_type||'_'||subject_id AS pid,
+    task_type                  AS type,
+    0                          AS isparent,
+    'icon'||task_type          AS iconSkin,
+    3                          AS instid
+FROM
+    OPB_TASK a
+WHERE
+    a.task_type=68
+AND a.is_reusable=1
+UNION
+SELECT
+    task_name                  AS name,
+    TO_CHAR(task_id)           AS id,
+    task_type||'_'||subject_id AS pid,
+    task_type                  AS type,
+    0                          AS isparent,
+    'icon'||task_type          AS iconSkin,
+    4                          AS instid
+FROM
+    OPB_TASK a
+WHERE
+    a.task_type=70
+AND a.is_reusable=1
+UNION
+SELECT
+    task_name                  AS name,
+    TO_CHAR(task_id)           AS id,
+    task_type||'_'||subject_id AS pid,
+    task_type                  AS type,
+    1                          AS isparent,
+    'icon'||task_type          AS iconSkin,
+    5                          AS instid
+FROM
+    OPB_TASK a
+WHERE
+    a.task_type=71
+AND a.is_reusable=1
+UNION
+SELECT
+    CONVERT(c.instance_name, 'ZHS16GBK', 'UTF8') AS name,
+    TO_CHAR(c.task_id)                           AS id,
+    TO_CHAR(c.workflow_id)                       AS pid,
+    c.task_type                                  AS type,
+    0                                            AS isparent,
+    'icon'||c.task_type                          AS iconSkin,
+    c.instance_id                                AS instid
+FROM
+    opb_task_inst c,
+    opb_task b
+WHERE
+    c.workflow_id=b.task_id;

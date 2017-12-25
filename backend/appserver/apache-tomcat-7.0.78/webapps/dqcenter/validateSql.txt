@@ -1,0 +1,175 @@
+sql参数变量：
+
+
+下拉显示数据源列表：
+http://localhost:8080/xpress/repository/validateSql/listSelDs
+req:
+{
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "0": "default",
+        "2b516976-b2fc-1032-8483-8970969f59e2": "datasource3",
+        "dc810f06-b2fb-1032-8483-8970969f59e2": "datasource2",
+        "0fb247c0-aae0-1034-b6fe-2f2f5f4e6a2b": "dsMysql_1"
+    },
+    "msg": "操作成功"
+}
+
+
+
+新增：
+http://localhost:8080/xpress/repository/validateSql/create
+req:
+{
+    "validateName": "test002",
+    "sqlContent": "select current_timestamp ,(select 'x' from dual)  ",
+    "enabled": 0,
+    "connId": "0",
+    "triggerType": "2",
+    "vs":[
+    	{
+    		"sqlName":"你大你",
+    		"varName":"aas",
+    		"varValue":"s",
+    		"usenum":"1"
+    	}
+    ]
+}
+res:
+{
+    "sta": 0,
+    "msg": "操作失败！"
+}
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connId": "0",
+        "enabled": 0,
+        "id": "146809e7-b812-1034-97d9-af114426f145",
+        "sqlContent": "select current_timestamp ,(select 'x' from dual)  ",
+        "triggerType": "2",
+        "validateName": "test002",
+        "vs": [
+            {
+                "id": "146adebb-b812-1034-97d9-af114426f145",
+                "mapValue": [],
+                "rc": null,
+                "sqlId": "146809e7-b812-1034-97d9-af114426f145",
+                "sqlName": "你大你",
+                "usenum": 1,
+                "varName": "aas",
+                "varValue": "s",
+                "vs": null
+            }
+        ]
+    }
+}
+
+
+修改：
+http://localhost:8080/xpress/repository/validateSql/update
+req:
+{
+    "validateName": "test002",
+    "sqlContent": "select current_timestamp ,(select 'x' from dual)  ",
+    "enabled": 0,
+    "connId": "0",
+    "triggerType": "2",
+"id": "146809e7-b812-1034-97d9-af114426f145",
+    "vs":[
+    	{
+    		"sqlName":"你大你xx",
+    		"varName":"aas",
+    		"varValue":"s",
+    		"usenum":"1"
+    	}
+    ]
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connId": "0",
+        "enabled": 0,
+        "id": "146809e7-b812-1034-97d9-af114426f145",
+        "sqlContent": "select current_timestamp ,(select 'x' from dual)  ",
+        "triggerType": "2",
+        "validateName": "test002",
+        "vs": [
+            {
+                "id": "e751d1fe-b812-1034-97d9-af114426f145",
+                "mapValue": [],
+                "rc": null,
+                "sqlId": "146809e7-b812-1034-97d9-af114426f145",
+                "sqlName": "你大你xx",
+                "usenum": 1,
+                "varName": "aas",
+                "varValue": "s",
+                "vs": null
+            }
+        ]
+    }
+}
+
+
+获取单条记录：
+http://localhost:8080/xpress/repository/validateSql/pkone
+req:
+{
+	"id": "146809e7-b812-1034-97d9-af114426f145"
+}
+res:  sqlName(sql结果字段名), varName(自定义变量名), varValue(参考值), usenum(引(使)用次数)
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connId": "0",
+        "enabled": 1,
+        "id": "a3e699b1-ea8a-1032-bc0c-641127916134",
+        "sqlContent": "select '2323s' as ds,'kfiisef22' as w3 from dual   ",
+        "triggerType": "2",
+        "validateName": "ttttt-1",
+        "vs": [
+            {
+                "id": "dcfe0732-0094-1033-b907-5654a3362516",
+                "sqlId": "a3e699b1-ea8a-1032-bc0c-641127916134",
+                "sqlName": "ds",
+                "usenum": 0,
+                "varName": "2323s",
+                "varValue": "2323s",
+                "vs": null
+            },
+            {
+                "id": "dcfec04a-0094-1033-b907-5654a3362516",
+                "sqlId": "a3e699b1-ea8a-1032-bc0c-641127916134",
+                "sqlName": "w3",
+                "usenum": 0,
+                "varName": "kfiisef22",
+                "varValue": "kfiisef22",
+                "vs": null
+            }
+        ]
+    }
+}
+
+
+验证是否存在：
+http://localhost:8080/xpress1/repository/repositoryConnection/validateExist
+req:
+{}
+res:
+{}
+
+
+删除：
+http://localhost:8080/xpress/repository/validateSql/delete
+req:
+{}
+res:
+{}
+

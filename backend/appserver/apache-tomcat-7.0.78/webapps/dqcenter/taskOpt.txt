@@ -1,0 +1,129 @@
+
+启动工作流：
+http://localhost:8080/xpress/repository/taskOpt/startWorkflow
+req:  需要FOLDER_NAME
+工作流中：取type,id,name,instid;
+monitor中：取NODETYPE,ID,NAME,oid, 如果nodetype=wrkr的时候取opid为oid
+fr: 从哪里发起的操作：w, m；工作流, monitor 
+{
+	"fr":"w",
+	"type":"71",
+	"id":"71_2",
+	"name":"wk_loadStage_channel2",
+	"instid":"3428"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}
+
+停止任务：
+http://localhost:8080/xpress/repository/taskOpt/stopWorkflow
+req: WORKFLOW_NAME
+{
+	"fr":"w",
+	"type":"71",
+	"id":"71_2",
+	"name":"wk_loadStage_channel2",
+	"instid":"3428"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}
+
+启动任务： 
+http://localhost:8080/xpress/repository/taskOpt/startTask
+req:WORKFLOW_NAME,TASK_NAME
+{
+	"fr":"w",
+	"type":"68",
+	"id":"3200",
+	"name":"s_DW_ODS_CRM_S_PROD_INT",
+	"instid":"3202"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}
+
+停止任务http://localhost:8080/xpress/repository/taskOpt/stopTask
+req:FOLDER_NAME,WORKFLOW_NAME,TASK_NAME
+{
+	"fr":"w",
+	"type":"68",
+	"id":"3200",
+	"name":"s_DW_ODS_CRM_S_PROD_INT",
+	"instid":"3202"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}
+
+
+从此任务启动工作流http://localhost:8080/xpress/repository/taskOpt/startWorkflowFromTask
+req:WORKFLOW_NAME,TASK_NAME
+{
+	"fr":"w",
+	"type":"68",
+	"id":"3200",
+	"name":"s_DW_ODS_CRM_S_PROD_INT",
+	"instid":"3202"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}
+
+计划任务http://localhost:8080/xpress/repository/taskOpt/scheduleWorkflow
+req:
+req: WORKFLOW_NAME
+{
+	"fr":"w",
+	"type":"71",
+	"id":"71_2",
+	"name":"wk_loadStage_channel2",
+	"instid":"3428"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}
+
+停止计划任务http://localhost:8080/xpress/repository/taskOpt/unscheduleWorkflow
+req: WORKFLOW_NAME
+{
+	"fr":"w",
+	"type":"71",
+	"id":"71_2",
+	"name":"wk_loadStage_channel2",
+	"instid":"3428"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}
+
+停止计划任务http://localhost:8080/xpress/repository/taskOpt/recoverWorkflow
+req: WORKFLOW_NAME
+{
+	"fr":"w",
+	"type":"71",
+	"id":"71_2",
+	"name":"wk_loadStage_channel2",
+	"instid":"3428"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}
+

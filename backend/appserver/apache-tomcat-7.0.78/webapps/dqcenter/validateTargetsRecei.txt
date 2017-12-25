@@ -1,0 +1,131 @@
+
+自动校验推送配置:推送接收人员
+
+列表：
+http://localhost:8080/xpress/repository/validateTargetsRecei/list
+req:
+{
+	"vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+}
+res:
+{
+    "sta": 1,
+    "data":
+    {
+        "result":
+        [
+            {
+                "id": "asas",
+                "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+                "isDel": "0",
+                "username": "蒋根亮",
+                "isValid": "1",
+                "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+            },
+            {
+                "id": "e6c0bb9e-4f1d-1035-bb04-3177c164b046",
+                "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+                "isDel": "0",
+                "username": "蒋根亮",
+                "isValid": "1",
+                "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+            }
+        ],
+        "totalCount": 2,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+
+新增：
+http://localhost:8080/xpress/repository/validateTargetsRecei/create
+vconfid： conf处的id,
+receiveId:联系人id
+req:
+{
+	"receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+	"vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data":
+    {
+        "id": "6bbdf639-4f1d-1035-bb04-3177c164b046",
+        "isDel": "0",
+        "isValid": "1",
+        "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+        "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+    }
+}
+
+修改：
+http://localhost:8080/xpress/repository/validateTargetsRecei/update
+req:
+{
+    "id": "6bbdf639-4f1d-1035-bb04-3177c164b046",
+    "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224wqw",
+    "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data":
+    {
+        "id": "6bbdf639-4f1d-1035-bb04-3177c164b046",
+        "isDel": "0",
+        "isValid": "1",
+        "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224wqw",
+        "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+    }
+}
+
+
+根据主键删除：
+http://localhost:8080/xpress/repository/validateTargetsRecei/delete
+req:
+{
+	"id": "6bbdf639-4f1d-1035-bb04-3177c164b046"
+}
+res:
+{
+	"sta": 1,
+	"msg": "操作成功！",
+	"data":
+	{
+	    "id": "6bbdf639-4f1d-1035-bb04-3177c164b046",
+	    "isDel": "",
+	    "isValid": "",
+	    "receiveId": "",
+	    "vconfid": ""
+	}
+}
+
+根据关系键删除：
+http://localhost:8080/xpress/repository/validateTargetsRecei/deleteByRelId
+receiveId 可不存在
+vconfid  必填
+req:
+{
+	"receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+    "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data":
+    {
+        "id": "",
+        "isDel": "",
+        "isValid": "",
+        "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+        "username": "",
+        "vconfid": "4c68ef59-4f16-1035-bb04-3177c164b046"
+    }
+}

@@ -1,0 +1,398 @@
+
+工作流耗时分布列表： 查询条件：selDate 日期必填，默认为当前日期 ;　pageSize 设置一个比较大的数  让全部查出记录 
+http://localhost:8080/xpress/repository/analyze/wkflowdistlist
+req:
+{
+	"pageNo":"1",
+    "pageSize":"2000",
+	"selDate":"2016-10-02"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "xnum": 7,
+                "runIdsVal": "63362,63410,63408,63444,63400,63456,63401",
+                "ykey": "3",
+                "bound":"0:0:39"
+            },
+            {
+                "xnum": 6,
+                "runIdsVal": "63445,63424,63425,63437,63453,63436",
+                "ykey": "2"
+            },
+            {
+                "xnum": 3,
+                "runIdsVal": "63384,63428,63422",
+                "ykey": "7"
+            },
+            {
+                "xnum": 3,
+                "runIdsVal": "63435,63449,63413",
+                "ykey": "6"
+            },
+            {
+                "xnum": 8,
+                "runIdsVal": "63411,63380,63415,63416,63414,63412,63417,63418",
+                "ykey": "5"
+            },
+            {
+                "xnum": 10,
+                "runIdsVal": "63407,63405,63409,63403,63404,63402,63406,63361,63376,63442",
+                "ykey": "4"
+            },
+            {
+                "xnum": 1,
+                "runIdsVal": "63426",
+                "ykey": "9"
+            },
+            {
+                "xnum": 3,
+                "runIdsVal": "63383,63395,63431",
+                "ykey": "8"
+            },
+            {
+                "xnum": 1,
+                "runIdsVal": "63397",
+                "ykey": "13"
+            },
+            {
+                "xnum": 2,
+                "runIdsVal": "63393,63430",
+                "ykey": "14"
+            },
+            {
+                "xnum": 2,
+                "runIdsVal": "63439,63387",
+                "ykey": "11"
+            },
+            {
+                "xnum": 1,
+                "runIdsVal": "63396",
+                "ykey": "12"
+            }
+        ],
+        "totalCount": 47,
+        "pageNo": 1,
+        "pageSize": 2000,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+工作流某柱状图包含的工作流列表:  增加 selDate 从上面选中的日期带过来
+http://localhost:8080/xpress/repository/analyze/wkflowdistonelist
+req:
+{
+	"pageNo":"1",
+    "pageSize":"20",
+	"runIds":"63528,63526",
+	"selDate":"2016-10-02"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "WORKFLOW_RUN_ID": "63526",
+                "WF_INTERVAL_DAY": "0",
+                "SUBJ_NAME": "SIEBEL_clues",
+                "ROWNUM_": "1",
+                "SUBJECT_ID": "11",
+                "START_TIME": "2016-10-05 09:50:25.0",
+                "END_TIME": "2016-10-05 09:50:40.0",
+                "WORKFLOW_ID": "919",
+                "WORKFLOW_NAME": "clues",
+                "INTERVAL_TIME": "0:0:15"
+            },
+            {
+                "WORKFLOW_RUN_ID": "63528",
+                "WF_INTERVAL_DAY": "0",
+                "SUBJ_NAME": "PRODINFO",
+                "ROWNUM_": "2",
+                "SUBJECT_ID": "36",
+                "START_TIME": "2016-10-05 17:00:00.0",
+                "END_TIME": "2016-10-05 17:00:12.0",
+                "WORKFLOW_ID": "2931",
+                "WORKFLOW_NAME": "wf_para_ready_curday",
+                "INTERVAL_TIME": "0:0:12"
+            }
+        ],
+        "totalCount": 2,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+
+工作流历史耗时列表，绘折线图：  增加了三个instance_id, 从上面的列表里面取
+http://localhost:8080/xpress/repository/analyze/wkflowhislist
+req:
+{
+	"pageNo":"1",
+    "pageSize":"20",
+    "selDate":"2016-10-02",
+	"workFlowId":"3255",
+	"workFlowRunId":"65954",
+	"instance_id1":"",
+	"instance_id2":"",
+	"instance_id3":""
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "INTERVAL_DAY": "0",
+                "RUN_STATUS_CODE": "4",
+                "SUBJECT_ID": "38",
+                "WF_COST": "98",
+                "START_TIME": "2015-11-17 08:02:11.0",
+                "WORKFLOW_NAME": "wf_Quotation",
+                "RUN_ERR_CODE": "0",
+                "INTERVAL_TIME": "0:1:38",
+                "WORKFLOW_RUN_ID": "63059",
+                "SUBJ_NAME": "GJDW_OUTER",
+                "ROWNUM_": "1",
+                "END_TIME": "2015-11-17 08:03:49.0",
+                "WORKFLOW_ID": "3255"
+            },
+            {
+                "INTERVAL_DAY": "0",
+                "RUN_STATUS_CODE": "4",
+                "SUBJECT_ID": "38",
+                "WF_COST": "257",
+                "START_TIME": "2014-09-14 10:43:27.0",
+                "WORKFLOW_NAME": "wf_Quotation",
+                "RUN_ERR_CODE": "0",
+                "INTERVAL_TIME": "0:4:17",
+                "WORKFLOW_RUN_ID": "62638",
+                "SUBJ_NAME": "GJDW_OUTER",
+                "ROWNUM_": "2",
+                "END_TIME": "2014-09-14 10:47:44.0",
+                "WORKFLOW_ID": "3255"
+            }
+        ],
+        "totalCount": 15,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+工作流子节点耗时列表,绘饼图及表格：
+http://localhost:8080/xpress/repository/analyze/wkflowsubnodelist
+req:
+{
+	"pageNo":"1",
+    "pageSize":"1000",
+	"workFlowRunId":"63439"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "WORKFLOW_RUN_ID": "63439",
+                "INSTANCE_ID": "3393",
+                "INTERVAL_DAY": "0",
+                "TASK_TYPE": "68",
+                "ROWNUM_": "1",
+                "SUBJECT_ID": "38",
+                "WORKFLOW_ID": "3255",
+                "INSTANCE_NAME": "s_DW_STAGE_T85_QUOTATION",
+                "INTERVAL_TIME": "0:0:2",
+                "COSTTIME": "2"
+            },
+            {
+                "WORKFLOW_RUN_ID": "63439",
+                "INSTANCE_ID": "3406",
+                "INTERVAL_DAY": "0",
+                "TASK_TYPE": "91",
+                "ROWNUM_": "2",
+                "SUBJECT_ID": "38",
+                "WORKFLOW_ID": "3255",
+                "INSTANCE_NAME": "Control",
+                "INTERVAL_TIME": "0:0:0",
+                "COSTTIME": "0"
+            },
+            {
+                "WORKFLOW_RUN_ID": "63439",
+                "INSTANCE_ID": "3407",
+                "INTERVAL_DAY": "0",
+                "TASK_TYPE": "58",
+                "ROWNUM_": "3",
+                "SUBJECT_ID": "38",
+                "WORKFLOW_ID": "3255",
+                "INSTANCE_NAME": "Command",
+                "INTERVAL_TIME": "0:0:1",
+                "COSTTIME": "1"
+             }
+        ],
+        "totalCount": 8,
+        "pageNo": 1,
+        "pageSize": 1000,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+
+节点耗时分布列表：
+http://localhost:8080/xpress/repository/analyze/wkflownodedistlist
+req:
+{
+	"pageNo":"1",
+    "pageSize":"20000",
+    "selDate":"2016-10-02"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "ROWNUM_": "1",
+                "LNUM": "27",
+                "LEVELN": "2"
+            },
+            {
+                "ROWNUM_": "2",
+                "LNUM": "119",
+                "LEVELN": "3"
+            },
+            {
+                "ROWNUM_": "3",
+                "LNUM": "30",
+                "LEVELN": "4"
+            }
+        ],
+        "totalCount": 10,
+        "pageNo": 1,
+        "pageSize": 20000,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+选中柱状图节点耗时列表： leveln 为点击选中上面的分布中的柱状
+http://localhost:8080/xpress/repository/analyze/wkflownodesublist
+req:
+{
+	"pageNo":"1",
+    "pageSize":"1000",
+    "selDate":"2016-10-02",
+	"leveln":"2",
+	"inputName":"DW"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "INSTANCE_ID": "3230",
+                "INTERVAL_DAY": "0.00001157",
+                "SUBJECT_ID": "38",
+                "START_TIME": "2016-10-02 14:29:31.0",
+                "WORKFLOW_NAME": "wk_LoadTheme_party",
+                "INTERVAL_SEC": "0:0:1",
+                "INSTANCE_NAME": "s_DW_ORG_T02_INT_DEPT",
+                "WORKFLOW_RUN_ID": "63383",
+                "ROWNUM_": "1",
+                "TIMEGAUS": "-0.5874733883155933504648200675466375446925",
+                "END_TIME": "2016-10-02 14:29:32.0",
+                "WORKFLOW_ID": "3075",
+                "TIMESTD": "0.00007722193123757603815950398103208638028103",
+                "SUBJECT_NAME": "GJDW_OUTER",
+                "LEVELN": "2",
+                "TIMEAVG": "0.00005693582959641255605381165919282511210762"
+            },
+            {
+                "INSTANCE_ID": "3407",
+                "INTERVAL_DAY": "0.00001157",
+                "SUBJECT_ID": "38",
+                "START_TIME": "2016-10-02 16:01:08.0",
+                "WORKFLOW_NAME": "wf_Quotation",
+                "INTERVAL_SEC": "0:0:1",
+                "INSTANCE_NAME": "Command",
+                "WORKFLOW_RUN_ID": "63439",
+                "ROWNUM_": "2",
+                "TIMEGAUS": "-0.5874733883155933504648200675466375446925",
+                "END_TIME": "2016-10-02 16:01:09.0",
+                "WORKFLOW_ID": "3255",
+                "TIMESTD": "0.00007722193123757603815950398103208638028103",
+                "SUBJECT_NAME": "GJDW_OUTER",
+                "LEVELN": "2",
+                "TIMEAVG": "0.00005693582959641255605381165919282511210762"
+            }
+        ],
+        "totalCount": 19,
+        "pageNo": 1,
+        "pageSize": 1000,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+节点历史耗时折线图列表数据：
+http://localhost:8080/xpress/repository/analyze/wkflownodehislist
+req:
+{
+	"pageNo":"1",
+    "pageSize":"25",
+    "selDate":"2016-10-02",
+	"instanceId":"3230"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "INSTANCE_ID": "3230",
+                "INTERVAL_DAY": "0.29",
+                "SUBJECT_ID": "38",
+                "START_TIME": "2012-11-20 04:58:03.0",
+                "WORKFLOW_NAME": "wk_LoadTheme_party",
+                "INSTANCE_NAME": "s_DW_ORG_T02_INT_DEPT",
+                "INTERVAL_TIME": "6:55:6",
+                "WORKFLOW_RUN_ID": "49429",
+                "SUBJ_NAME": "GJDW_OUTER",
+                "ROWNUM_": "1",
+                "END_TIME": "2012-11-20 11:53:09.0",
+                "WORKFLOW_ID": "3075",
+                "COSTTIME": "24906.000096"
+            },
+            {
+                "INSTANCE_ID": "3230",
+                "INTERVAL_DAY": "0.01",
+                "SUBJECT_ID": "38",
+                "START_TIME": "2012-11-21 17:34:03.0",
+                "WORKFLOW_NAME": "wk_LoadTheme_party",
+                "INSTANCE_NAME": "s_DW_ORG_T02_INT_DEPT",
+                "INTERVAL_TIME": "0:16:20",
+                "WORKFLOW_RUN_ID": "49843",
+                "SUBJ_NAME": "GJDW_OUTER",
+                "ROWNUM_": "2",
+                "END_TIME": "2012-11-21 17:50:23.0",
+                "WORKFLOW_ID": "3075",
+                "COSTTIME": "979.999776"
+            }
+        ],
+        "totalCount": 89,
+        "pageNo": 1,
+        "pageSize": 25,
+        "totalPage": 4
+    },
+    "msg": "操作成功！"
+}
+

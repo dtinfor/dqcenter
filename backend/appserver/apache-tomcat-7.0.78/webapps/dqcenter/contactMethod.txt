@@ -1,0 +1,152 @@
+
+列表：
+http://www.paiyou365.com/xpress1/system/contactMethod/list
+req:
+{
+ "contactname":"蒋"
+ "sidx":"id",
+ "sord":"desc"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "id": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+                "remark": "是这样的",
+                "contactname": "蒋根亮",
+                "email": "jianggenliang@kzcpm.com",
+                "department": "cms",
+                "wechat": "18917212185",
+                "mobile": "18917212185"
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增：
+http://www.paiyou365.com/xpress1/system/contactMethod/create
+req:
+ {
+    "remark": "是这样的xx",
+    "contactname": "蒋1根亮",
+    "email": "jianggenliang@kzcpm.com",
+    "department": "cms",
+    "wechat": "18817212185",
+    "mobile": "18817212185"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "contactname": "蒋1根亮",
+        "department": "cms",
+        "email": "jianggenliang@kzcpm.com",
+        "id": "1e956721-acf6-1034-9d3c-c778029f199f",
+        "mobile": "18817212185",
+        "remark": "是这样的xx",
+        "wechat": "18817212185"
+    }
+}
+
+修改：
+http://www.paiyou365.com/xpress1/system/contactMethod/update
+req:
+s{
+    "remark": "是这样的xx",
+    "contactname": "蒋2根亮",
+    "email": "jianggenliang@kzcpm.com",
+    "department": "cms",
+    "wechat": "18817212185",
+    "mobile": "18817212185",
+	"id":"1e956721-acf6-1034-9d3c-c778029f199f"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "contactname": "蒋2根亮",
+        "department": "cms",
+        "email": "jianggenliang@kzcpm.com",
+        "id": "1e956721-acf6-1034-9d3c-c778029f199f",
+        "mobile": "18817212185",
+        "remark": "是这样的xx",
+        "wechat": "18817212185"
+    }
+}
+
+
+获取单条记录：
+http://www.paiyou365.com/xpress1/system/contactMethod/pkone
+req:
+{
+	"id": "1e956721-acf6-1034-9d3c-c778029f199f"
+}
+res:
+{
+    "sta": 0,
+    "msg": "查询失败"
+}
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "contactname": "蒋1根亮",
+        "department": "cms",
+        "email": "jianggenliang@kzcpm.com",
+        "id": "55e68633-acf8-1034-9d3c-c778029f199f",
+        "mobile": "18817212185",
+        "remark": "是这样的xx",
+        "wechat": "18817212185"
+    }
+}
+
+
+验证是否存在：
+http://www.paiyou365.com/xpress11/repository/repositoryConnection/validateExist
+req:
+{
+	"mobile": "18817212185"
+}
+res:
+{
+    "sta": 1,
+    "msg": "存在相同记录",
+    "data": false
+}
+{
+    "sta": 1,
+    "msg": "不存在相同记录",
+    "data": true
+}
+
+
+删除：
+http://www.paiyou365.com/xpress1/system/contactMethod/delete
+req:
+{
+	"id": "1e956721-acf6-1034-9d3c-c778029f199f"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "contactname": "",
+        "department": "",
+        "email": "",
+        "id": "1e956721-acf6-1034-9d3c-c778029f199f",
+        "mobile": "",
+        "remark": "",
+        "wechat": ""
+    }
+}
+

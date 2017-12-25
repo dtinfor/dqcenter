@@ -1,0 +1,350 @@
+校验配置：
+
+
+列表：
+http://localhost:8080/xpress/repository/validateCust/list
+req:
+{
+	"validateName":"",
+	"triggerType":"",
+	"enabled": "1",			是否在验证
+	"remark":""
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "validateName": "tttt2",
+                "repstConnId": "dc810f06-b2fb-1032-8483-8970969f59e2",
+                "sqlContent": "select   #ssdf# ,  #{tt1}    #2323s#,  #tt3#  #tt6#  #{bbbc}  #{tt2}   #{2323s}",
+                "id": "04eba3a7-dfb0-1032-aa89-202e871cf783",
+                "enabled": true,								是否在验证---->不在的可以启用，在的可以停用
+                "connId": "default",
+                "remark": "test",
+                "triggerId": "1",
+                "triggerType": "0",
+                "timenear": "2016-12-23 21:34:26",
+				"timenext": "2016-12-23 21:34:26"
+            },
+            {
+                "validateName": "tttt3",
+                "sqlContent": "tttet",
+                "id": "0e346524-dfbd-1032-aa89-202e871cf783",
+                "enabled": false,
+                "connId": "default",
+                "remark": "test",
+                "triggerId": "",
+                "triggerType": "0"
+            }
+        ],
+        "totalCount": 13,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增修改引用资源：
+触发类型：0:schedule定时任务 1:跟随任务
+数据源下拉列表：见 参数变量2:  validateSql/listSelDs  
+如果类型为0, 引用 调度计划：schedulerLogic/listNode  显示单选树
+如果为1      引用 工作流 : dwTree/listWorkFlowTree
+自定义参数列表： 见 参数变量1:  validateSqlVar/listTree
+预定义参数列表： 同 引用 工作流 : dwTree/listWorkFlowTree   根据类型在页面上显示不同的 固定变量名  
+	选中之后: 1)按规则：对象名+固定变量名+时间戳(年份两位,到毫妙级) 生成变量名
+			  2) 将：类型，固定变量名，生成变量名, 节点instance_id  post到后台生成参数变量记录，如果返回成功，继续后续操作 : 引用 参数变量1:validateSqlVar/create
+			  3) 将生成变量名 放入 校验逻辑（sql）的光标位置
+			  
+			  
+
+测试sql语句是否正确：
+http://localhost:8080/xpress1/repository/validateCust/test
+req:
+{
+	"connId":"",
+	"sqlContent":""
+}
+res:
+{}
+
+新增：
+http://localhost:8080/xpress/repository/validateCust/create
+req:
+{
+    "validateName": "tttt3-jiang",
+    "sqlContent": "tttet",
+    "enabled": false,
+    "connId": "default",
+    "remark": "test",
+    "triggerId": "",
+    "triggerType": "0",
+    "validateMsgs": [
+            {
+                "aftopt": "2",
+                "ispush": "1",
+                "msg": "失败 ",
+                "msgType": 0,
+                "sqlId": "04c3c153-b287-1034-9ce0-c4ea49ab8186",
+                "optids": "",
+                "selfopt": "6127bbed-0d0f-1035-ad00-fb97003b2a20"
+            },
+            {
+                "aftopt": "1",
+                "ispush": "1",
+                "msg": "成功消息 ",
+                "msgType": 1,
+                "sqlId": "04c3c153-b287-1034-9ce0-c4ea49ab8186",
+                "optids": "",
+                "selfopt": ""
+            }
+        ],
+	"validateMsgsendtos": [
+             {
+                "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+                "receiveType": "10",
+                "sqlId": "04c3c153-b287-1034-9ce0-c4ea49ab8186"
+            }
+        ]
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connId": "default",
+        "enabled": false,
+        "id": "6a4f2bf0-b28e-1034-9ce0-c4ea49ab8186",
+        "remark": "test",
+        "repstConnId": "2b516976-b2fc-1032-8483-8970969f59e2",
+        "sqlContent": "tttet",
+        "triggerId": "",
+        "triggerType": "0",
+        "validateMsgs": [
+            {
+                "aftopt": "2",
+                "id": "6a503db8-b28e-1034-9ce0-c4ea49ab8186",
+                "ispush": "1",
+                "msg": "失败 ",
+                "msgType": 0,
+                "sqlId": "6a4f2bf0-b28e-1034-9ce0-c4ea49ab8186"
+            },
+            {
+                "aftopt": "1",
+                "id": "6a515914-b28e-1034-9ce0-c4ea49ab8186",
+                "ispush": "1",
+                "msg": "成功消息 ",
+                "msgType": 1,
+                "sqlId": "6a4f2bf0-b28e-1034-9ce0-c4ea49ab8186"
+            }
+        ],
+        "validateName": "tttt3-jiang",
+	"validateMsgsendtos": [
+             {
+                "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+                "receiveType": "10",
+                "sqlId": "04c3c153-b287-1034-9ce0-c4ea49ab8186"
+            }
+        ]
+    }
+}
+
+修改：
+http://localhost:8080/xpress/repository/validateCust/update
+req:
+{
+	"id": "bf23c7f5-b29f-1034-9ce0-c4ea49ab8186",
+    "validateName": "tttt3-jiang",
+    "sqlContent": "tttet",
+    "enabled": false,
+    "connId": "default",
+    "remark": "test",
+    "triggerId": "",
+    "triggerType": "0",
+    "validateMsgs": [
+            {
+                "aftopt": "2",
+                "ispush": "1",
+                "msg": "失败 ",
+                "msgType": 0,
+                "sqlId": "04c3c153-b287-1034-9ce0-c4ea49ab8186"
+            },
+            {
+                "aftopt": "1",
+                "ispush": "1",
+                "msg": "成功消息 ",
+                "msgType": 1,
+                "sqlId": "04c3c153-b287-1034-9ce0-c4ea49ab8186"
+            }
+        ],
+	"validateMsgsendtos": [
+             {
+                "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+                "receiveType": "10",
+                "sqlId": "04c3c153-b287-1034-9ce0-c4ea49ab8186"
+            }
+        ]
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connId": "default",
+        "enabled": false,
+        "id": "bf23c7f5-b29f-1034-9ce0-c4ea49ab8186",
+        "remark": "test",
+        "repstConnId": "2b516976-b2fc-1032-8483-8970969f59e2",
+        "sqlContent": "tttet",
+        "triggerId": "",
+        "triggerType": "0",
+        "validateMsgs": [
+            {
+                "aftopt": "2",
+                "id": "bf263462-b29f-1034-9ce0-c4ea49ab8186",
+                "ispush": "1",
+                "msg": "失败 ",
+                "msgType": 0,
+                "sqlId": "bf23c7f5-b29f-1034-9ce0-c4ea49ab8186"
+            },
+            {
+                "aftopt": "1",
+                "id": "bf278cb4-b29f-1034-9ce0-c4ea49ab8186",
+                "ispush": "1",
+                "msg": "成功消息 ",
+                "msgType": 1,
+                "sqlId": "bf23c7f5-b29f-1034-9ce0-c4ea49ab8186"
+            }
+        ],
+        "validateMsgsendtos": [
+            {
+                "contactName": "",
+                "id": "bf29098b-b29f-1034-9ce0-c4ea49ab8186",
+                "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+                "receiveType": "10",
+                "sqlId": "bf23c7f5-b29f-1034-9ce0-c4ea49ab8186"
+            }
+        ],
+        "validateName": "tttt3-jiang"
+    }
+}
+
+
+获取单条记录：
+http://localhost:8080/xpress/repository/validateCust/pkone
+req:
+{
+	"id":"2b516976-b2fc-1032-8483-8970969f59e2"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connId": "default",
+        "enabled": false,
+        "id": "2b516976-b2fc-1032-8483-8970969f59e2",
+        "remark": "test",
+        "repstConnId": "2b516976-b2fc-1032-8483-8970969f59e2",
+        "sqlContent": "tttet",
+        "triggerId": "",
+        "triggerType": "0",
+        "validateMsgs": [
+            {
+                "aftopt": "2",
+                "id": "bf263462-b29f-1034-9ce0-c4ea49ab8186",
+                "ispush": "1",
+                "msg": "失败 ",
+                "msgType": 0,
+                "sqlId": "bf23c7f5-b29f-1034-9ce0-c4ea49ab8186",
+                "optids": "",
+                "selfopt": "6127bbed-0d0f-1035-ad00-fb97003b2a20"
+            },
+            {
+                "aftopt": "1",
+                "id": "bf278cb4-b29f-1034-9ce0-c4ea49ab8186",
+                "ispush": "1",
+                "msg": "成功消息 ",
+                "msgType": 1,
+                "sqlId": "bf23c7f5-b29f-1034-9ce0-c4ea49ab8186",
+                "optids": "",
+                "selfopt": ""
+            }
+        ],
+        "validateMsgsendtos": [
+            {
+                "contactName": "",
+                "id": "bf29098b-b29f-1034-9ce0-c4ea49ab8186",
+                "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+                "receiveType": "10",
+                "sqlId": "bf23c7f5-b29f-1034-9ce0-c4ea49ab8186"
+            }
+        ],
+        "validateName": "tttt3-jiang"
+    }
+}
+{
+    "sta": 0,
+    "msg": "查询失败"
+}
+
+
+删除：
+http://localhost:8080/xpress/repository/validateCust/delete
+req:
+{
+    "id": "3f222208-b287-1034-9ce0-c4ea49ab8186" 
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connId": "",
+        "enabled": false,
+        "id": "3f222208-b287-1034-9ce0-c4ea49ab8186",
+        "remark": "",
+        "repstConnId": "",
+        "sqlContent": "",
+        "triggerId": "",
+        "triggerType": "",
+        "validateMsgs": [],
+        "validateName": ""
+    }
+}
+
+
+启动停止验证服务：
+http://localhost:8080/xpress/repository/validateCust/setvalid
+req:
+{
+    "id": "3f222208-b287-1034-9ce0-c4ea49ab8186",
+    "enabled":"1"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}
+{
+	"sta": 0,
+    "msg": "操作失败"
+}
+
+立即执行验证服务：
+http://localhost:8080/xpress/repository/validateCust/execvail
+req:
+{
+    "id": "3f222208-b287-1034-9ce0-c4ea49ab8186"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}
+{
+	"sta": 0,
+    "msg": "操作失败"
+}

@@ -1,0 +1,190 @@
+参数变量管理：
+
+列表：
+http://localhost:8080/xpress/repository/validateSqlVar/list
+req: usenum 未使用0,已使用1; enabled: 是否可用 1可用0不可用,     变量名称必须全局唯一不能重复
+{
+	"validateName":"",
+	"varName":"bbb",
+	"enabled":"",
+	"usenum":""
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "id": "31cad911-00b2-1033-b907-5654a3362516",
+                "validateName": "xcxc22",
+                "sqlContent": "select 'bbbc' from dual",
+                "enabled": true,
+                "connId": "2b516976-b2fc-1032-8483-8970969f59e2",
+                "varName": "bbbc",
+                "connName": "datasource3",
+                "sqlName": "s",
+                "usenum": 0,
+                "varValue": "bbbc",
+                "sqlId": "ac643188-ea8d-1032-bc0c-641127916134"
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增预定义变量：
+http://localhost:8080/xpress/repository/validateSqlVar/create
+req:varValue(树的id),sqlId(节点的type),varName(前端生成的),sqlName(固定变量)
+{
+    "id": "",
+    "sqlId": "68",
+    "sqlName": "EndTime",
+    "usenum": 1,
+    "varName": "s_DW_ODS_CRM_S_PROD_INT.EndTime.16120323594012",
+    "varValue": "3200"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "id": "d33eb7b0-0ac9-1035-8904-fdf8e182e5f4",
+        "mapValue": [],
+        "rc": null,
+        "sqlId": "68",
+        "sqlName": "EndTime",
+        "usenum": 1,
+        "varName": "s_DW_ODS_CRM_S_PROD_INT.EndTime.16120323594012",
+        "varValue": "",
+        "vs": null
+    }
+}
+
+修改：
+http://localhost:8080/xpress/repository/validateSqlVar/update
+req:
+{}
+res:
+{}
+
+
+获取单条记录：
+http://localhost:8080/xpress/repository/validateSqlVar/pkone
+req:
+{}
+res:
+{}
+
+验证是否存在： 在参数变量，新增或修改变量名称的时候都需要做验证,保证全局唯一 没有重复的变量
+http://localhost:8080/xpress/repository/validateSqlVar/validateExist
+req: id如果没有则为空，varName(输入的参数变量)
+{
+  "id":"dcfec04a-0094-1033-b907-5654a3362516",
+  "varName": "kfiisef22"
+}
+res: 存在相同记录则有重复，不可以使用
+{
+    "sta": 1,
+    "msg": "不存在相同记录",
+    "data": true
+}
+{
+    "sta": 1,
+    "msg": "存在相同记录",
+    "data": false
+}
+
+
+删除：
+http://localhost:8080/xpress/repository/validateSqlVar/delete
+req:
+{
+	"id": "f8b4f232-008e-1033-b907-5654a3362516"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "id": "f8b4f232-008e-1033-b907-5654a3362516",
+        "mapValue": [],
+        "rc": null,
+        "sqlId": "",
+        "varName": "",
+        "varValue": "",
+        "vs": null
+    }
+}
+
+测试，返回参数结果列表：新增和修改需要不同的参数,id, 新增id为空，修改必须要有参数，返回的内容不同
+http://localhost:8080/xpress/repository/validateSqlVar/test
+req:  id为 validateSql.txt=validateSql/pkone:id
+{
+	"id": "a3e699b1-ea8a-1032-bc0c-641127916134",
+    "sqlContent": "select current_timestamp as tt3, current_timestamp as tt6 ",
+    "connId": "0"
+}
+res: sqlName(sql字段名), varValue(变量值，参考用)
+{
+    "sta": 1,
+    "data": [
+        {
+            "sqlName": "tt6",
+            "varValue": "2016-12-03 23:39:41.0"
+        },
+        {
+            "sqlName": "tt3",
+            "varValue": "2016-12-03 23:39:41.0"
+        }
+    ],
+    "msg": "测试通过"
+}
+有变化的情况：
+{
+    "sta": 1,
+    "data": [
+        {
+            "sqlName": "kfiisef22",
+            "varValue": "kfiisef22"
+        },
+        {
+            "id": "dcfe0732-0094-1033-b907-5654a3362516",
+            "varName": "2323s",
+            "sqlName": "ds",
+            "usenum": 0,
+            "varValue": "2323s",
+            "sqlId": "a3e699b1-ea8a-1032-bc0c-641127916134"
+        }
+    ],
+    "msg": "测试通过"
+}
+
+
+查询返回树结构：
+http://localhost:8080/xpress/repository/validateSqlVar/listTree
+req: showRoot 0或其它, 0则不带根节点可以后传默认为0
+{
+}
+res:
+{
+    "sta": 1,
+    "msg": "查询参数树成功",
+    "data": [
+        {
+            "id": "ac643188-ea8d-1032-bc0c-641127916134",
+            "name": "xcxc22",
+            "value": "xcxc22",
+            "pid": "0"
+        },
+        {
+            "id": "31cad911-00b2-1033-b907-5654a3362516",
+            "name": "s0(bbbc)",
+            "value": "s0",
+            "pid": "ac643188-ea8d-1032-bc0c-641127916134"
+        }
+    ]
+}

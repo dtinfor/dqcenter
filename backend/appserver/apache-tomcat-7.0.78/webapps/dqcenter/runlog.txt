@@ -1,0 +1,131 @@
+
+错误日志列表：
+runStatusCode:1:succeed,3:failed,4:stop,5:abort,6:running
+http://localhost:8080/xpress/repository/runlog/listlogerr
+req:
+{
+	"pageNo":"1",
+    "pageSize":"20",
+    "subjName":"DW",
+    "workflowName":"Quotation",
+    "taskName":"双元",
+    "mappingName":"DW_STAGE",
+    "startTime":"2016-10-02 12:23:48",
+    "endTime":"2016-10-02 16:23:48",
+    "runStatusCode":"4"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "SUBJECT_AREA": "GJDW",
+                "FIRST_ERROR_CODE": "1022",
+                "SESSION_NAME": "s_DW_STAGE_CRM_CX_PROD_INT_LN",
+                "INSTANCE_ID": "1934",
+                "SUBJECT_ID": "4",
+                "START_TIME": "2012-07-03 17:47:30.0",
+                "WORKFLOW_NAME": "test_clting3",
+                "INTERVAL_TIME": "0:0:23",
+                "WORKFLOW_RUN_ID": "34536",
+                "SRC_SUCCESS_ROWS": "0",
+                "TOTAL_TRANS_ERRS": "0",
+                "RUN_STATUS_NAME": "Failed",
+                "ROWNUM_": "1",
+                "SESSION_ID": "1544",
+                "TARG_FAILED_ROWS": "0",
+                "SRC_FAILED_ROWS": "0",
+                "MAPPING_NAME": "DW_STAGE_CRM_CX_PROD_INT_LN ",
+                "END_TIME": "2012-07-03 17:47:53.0",
+                "FIRST_ERROR_MSG": "CMN_1022 数据库驱动程序错误...\nCMN_1022 [\r\n数据库驱动程序错误...\r\n函数名称: Logon\r\nORA-12170: TNS: 连接超时\n\r\n数据库驱动程序错误...\r\n函数名称: Connect\r\n数据库错误: 无法使用用户 [DW_ALL] 和连接字符串 [GJDW] 连接到数据库。]\n",
+                "WORKFLOW_ID": "1819",
+                "TARG_SUCCESS_ROWS": "0",
+                "SESSION_LOG_FILE": "C:\\Informatica\\PowerCenter8.6.1\\server\\infa_shared\\SessLogs\\s_DW_STAGE_CRM_CX_PROD_INT_LN.log",
+                "WORKLET_RUN_ID": "0"
+            },
+            {
+                "SUBJECT_AREA": "GJDW",
+                "FIRST_ERROR_CODE": "4036",
+                "SESSION_NAME": "s_DW_STAGE_CRM_CX_PROD_INT_LN",
+                "INSTANCE_ID": "1934",
+                "SUBJECT_ID": "4",
+                "START_TIME": "2012-07-04 09:35:20.0",
+                "WORKFLOW_NAME": "test_clting3",
+                "INTERVAL_TIME": "0:0:23",
+                "WORKFLOW_RUN_ID": "34540",
+                "SRC_SUCCESS_ROWS": "0",
+                "TOTAL_TRANS_ERRS": "0",
+                "RUN_STATUS_NAME": "Failed",
+                "ROWNUM_": "2",
+                "SESSION_ID": "1544",
+                "TARG_FAILED_ROWS": "0",
+                "SRC_FAILED_ROWS": "0",
+                "MAPPING_NAME": "DW_STAGE_CRM_CX_PROD_INT_LN ",
+                "END_TIME": "2012-07-04 09:35:43.0",
+                "FIRST_ERROR_MSG": "RR_4036 连接到数据库 [\r\n数据库驱动程序错误...\r\n函数名称: Logon\r\nORA-12170: TNS: 连接超时\n\r\n数据库驱动程序错误...\r\n函数名称: Connect\r\n数据库错误: 无法使用用户 [qry_siebel_dw] 和连接字符串 [siebelcrm] 连接到数据库。] 时出错。",
+                "WORKFLOW_ID": "1819",
+                "TARG_SUCCESS_ROWS": "0",
+                "SESSION_LOG_FILE": "C:\\Informatica\\PowerCenter8.6.1\\server\\infa_shared\\SessLogs\\s_DW_STAGE_CRM_CX_PROD_INT_LN.log",
+                "WORKLET_RUN_ID": "0"
+            }
+        ],
+        "totalCount": 11102,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 556
+    },
+    "msg": "操作成功！"
+}
+
+显示全量日志： 条件同错误日志
+http://localhost:8080/xpress/repository/runlog/listlogall
+req:
+{
+	"pageNo":"1",
+    "pageSize":"20",
+    "subjName":"DW",
+    "workflowName":"Quotation",
+    "taskName":"双元",
+    "mappingName":"DW_STAGE",
+    "startTime":"2016-10-02",
+    "runStatusCode":"4",
+    "svt":"0 or 1 or 2 "   --一级2，二级1，三级0
+}
+res:  智能校验 用：INTELL_CHECK 字段
+{
+结果同上  , 以下为某行信息
+
+END_TIME: "2012-07-03 17:47:53.0"
+FIRST_ERROR_CODE: "1022"
+FIRST_ERROR_MSG: "CMN_1022 数据库驱动程序错误...↵CMN_1022 [
+↵数据库驱动程序错误...
+↵函数名称: Logon
+↵ORA-12170: TNS: 连接超时↵
+↵数据库驱动程序错误...
+↵函数名称: Connect
+↵数据库错误: 无法使用用户 [DW_ALL] 和连接字符串 [GJDW] 连接到数据库。]↵"
+INSTANCE_ID: "1934"
+INTELL_CHECK: "警告"
+INTELL_CODE: "警告",
+INTERVAL_TIME: "0:0:23"
+MAPPING_NAME: "DW_STAGE_CRM_CX_PROD_INT_LN "
+ROWNUM_: "1"
+RUN_STATUS_NAME: "Failed"
+SESSION_ID: "1544"
+SESSION_LOG_FILE: "C:\Informatica\PowerCenter8.6.1\server\infa_shared\SessLogs\s_DW_STAGE_CRM_CX_PROD_INT_LN.log"
+SESSION_NAME: "s_DW_STAGE_CRM_CX_PROD_INT_LN"
+SRC_FAILED_ROWS: "0"
+SRC_SUCCESS_ROWS: "0"
+START_TIME: "2012-07-03 17:47:30.0"
+SUBJECT_AREA: "GJDW"
+SUBJECT_ID: "4"
+TARG_FAILED_ROWS: "0"
+TARG_SUCCESS_ROWS: "0"
+TOTAL_TRANS_ERRS: "0"
+WORKFLOW_ID: "1819"
+WORKFLOW_NAME: "test_clting3"
+WORKFLOW_RUN_ID: "34536"
+WORKLET_RUN_ID: "0"
+
+}

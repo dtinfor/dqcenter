@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+            http://www.springframework.org/schema/context  
+            http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+            http://www.springframework.org/schema/jdbc  
+            http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd 
+            http://www.springframework.org/schema/task 
+            http://www.springframework.org/schema/task/spring-task-3.2.xsd
+            http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+			http://www.springframework.org/schema/cache
+			http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
+			http://www.springframework.org/schema/security
+			http://www.springframework.org/schema/security/spring-security.xsd">
+
+	
+
+	<sec:http auto-config='true' use-expressions="true">
+		<sec:form-login login-page="/login" authentication-failure-url="/login?error=true" default-target-url="/page/business" />
+		<sec:access-denied-handler error-page="/common/error-404.jsp"/>
+		
+		<sec:custom-filter ref="faSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR" />
+	</sec:http>
+
+	<bean id="faSecurityInterceptor" class="com.powerdq.comm.security.FaSecurityInterceptor">
+		<property name="authenticationManager" ref="faAuthenticationManager" />
+		<property name="accessDecisionManager" ref="faAccessDecisionManager" />
+		<property name="securityMetadataSource" ref="faSecurityMetadataSource" />
+	</bean>
+
+	<sec:authentication-manager alias="faAuthenticationManager">
+		<sec:authentication-provider user-service-ref="faUserDetailsService">
+			<sec:password-encoder hash="md5" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+	
+	<bean id="faUserDetailsService" class="com.powerdq.comm.security.FaUserDetailsService"></bean>
+	<!-- 访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源 -->
+	<bean id="faAccessDecisionManager" class="com.powerdq.comm.security.FaAccessDecisionManager"></bean>
+	<!-- 资源源数据定义，即定义某一资源可以被哪些角色访问 -->
+	<bean id="faSecurityMetadataSource" class="com.powerdq.comm.security.FaSecurityMetadataSource">
+		<constructor-arg ref="roleService"></constructor-arg>
+	</bean>
+</beans>
+			
+		

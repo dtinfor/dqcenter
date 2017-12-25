@@ -1,0 +1,254 @@
+
+列表：
+http://www.paiyou365.com/xpress1/repository/repositoryConnection/list
+req:  sidx 排序字段，sord 顺序 asc 或 desc
+{
+ "connName":"ds2",
+  "dbType":"MySQL",
+ "sidx":"id",
+ "sord":"desc"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "port": "3305",
+                "connUrl": "jdbc:mysql://localhost:3305/xpress?useUnicode=true&characterEncoding=UTF-8",
+                "dbPwd": "root",
+                "fromdwid": "",
+                "hashs": "1",
+                "dbUser": "root",
+                "instType": "",
+                "id": "0fb247c0-aae0-1034-b6fe-2f2f5f4e6a2b",
+                "ischanged": 1,
+                "connName": "dsMysql_1",
+                "connIp": "localhost",
+                "usenum": 1,
+                "dbType": "MySQL",
+                "isValid": "1"
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增：
+http://www.paiyou365.com/xpress1/repository/repositoryConnection/create
+req:
+{
+    "port": "3306",
+    "ischanged": 0,
+    "connUrl": "jdbc:mysql://localhost:3305/xpress?useUnicode=true&characterEncoding=UTF-8",
+    "fromdwid": "",
+    "dbPwd": "root",
+    "hashs": "1",
+    "connIp": "2",
+    "connName": "dsMysql_1",
+    "dbUser": "root",
+    "instType": "",
+    "dbType": "MySQL"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connIp": "2",
+        "connMsg": "",
+        "connName": "dsMysql_1",
+        "connUrl": "jdbc:mysql://localhost:3305/xpress?useUnicode=true&characterEncoding=UTF-8",
+        "dbPwd": "root",
+        "dbType": "MySQL",
+        "dbUser": "root",
+        "fromdwid": "",
+        "hashs": "1",
+        "id": "0fb247c0-aae0-1034-b6fe-2f2f5f4e6a2b",
+        "instType": "",
+        "ischanged": 0,
+        "usenum": 0,
+        "isValid": "1",
+        "port": "3306"
+    }
+}
+
+修改：
+http://www.paiyou365.com/xpress1/repository/repositoryConnection/update
+req:
+{
+    "id": "0fb247c0-aae0-1034-b6fe-2f2f5f4e6a2b",
+    "port": "3305",
+    "ischanged": 1,
+    "connUrl": "jdbc:mysql://localhost:3305/xpress?useUnicode=true&characterEncoding=UTF-8",
+    "fromdwid": "",
+    "dbPwd": "root",
+    "hashs": "1",
+    "connIp": "localhost",
+    "connName": "dsMysql_1",
+    "dbUser": "root",
+    "instType": "",
+    "usenum": 1,
+     "isValid": "1",
+    "dbType": "MySQL"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connIp": "localhost",
+        "connMsg": "",
+        "connName": "dsMysql_1",
+        "connUrl": "jdbc:mysql://localhost:3305/xpress?useUnicode=true&characterEncoding=UTF-8",
+        "dbPwd": "root",
+        "dbType": "MySQL",
+        "dbUser": "root",
+        "fromdwid": "",
+        "hashs": "1",
+        "id": "0fb247c0-aae0-1034-b6fe-2f2f5f4e6a2b",
+        "instType": "",
+        "ischanged": 1,
+        "usenum": 1,
+     	"isValid": "1",
+        "port": "3305"
+    }
+}
+
+获取单条记录：
+http://www.paiyou365.com/xpress1/repository/repositoryConnection/pkone
+req:
+{
+	"id": "1cba7e15-a75e-1034-8803-749281d19269"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connIp": "localhost",
+        "connMsg": "",
+        "connName": "dsMysql_1",
+        "connUrl": "jdbc:mysql://localhost:3305/xpress?useUnicode=true&characterEncoding=UTF-8",
+        "dbPwd": "root",
+        "dbType": "MySQL",
+        "dbUser": "root",
+        "fromdwid": "",
+        "hashs": "1",
+        "id": "0fb247c0-aae0-1034-b6fe-2f2f5f4e6a2b",
+        "instType": "",
+        "ischanged": 1,
+        "usenum": 1,
+     	"isValid": "1",
+        "port": "3305"
+    }
+}
+{
+    "sta": 0,
+    "msg": "查询失败"
+}
+
+
+删除：
+http://www.paiyou365.com/xpress1/repository/repositoryConnection/delete
+req:
+{
+	"id": "2"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connIp": "",
+        "connMsg": "",
+        "connName": "",
+        "connUrl": "",
+        "dbPwd": "",
+        "dbType": "",
+        "dbUser": "",
+        "fromdwid": "",
+        "hashs": "",
+        "id": "2",
+        "instType": "",
+        "ischanged": 0,
+        "port": ""
+    }
+}
+
+验证是否存在：
+http://www.paiyou365.com/xpress1/repository/repositoryConnection/validateExist
+req:
+{
+	"connName":"",
+	"id":""
+}
+res:
+{
+    "sta": 1,
+    "msg": "存在相同记录",
+    "data": false
+}
+{
+    "sta": 1,
+    "msg": "不存在相同记录",
+    "data": true
+}
+
+验证库配置是否正确：
+http://www.paiyou365.com/xpress1/repository/repositoryConnection/test
+req:
+ {
+    "id": "2b516976-b2fc-1032-8483-8970969f59e2",
+    "connUrl": "jdbc:mysql://localhost:3305/xpress?useUnicode=true&characterEncoding=UTF-8",
+    "dbPwd": "root",
+    "connName": "datasource3",
+    "dbUser": "root",
+    "dbType": "MySQL"
+}
+res:
+{
+    "sta": 1,
+    "msg": "测试通过"
+}
+{
+    "sta": 0,
+    "msg": "java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)\r\n\tat com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1073)\r\n\tat com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3609)\r\n\tat com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3541)\r\n\tat com.mysql.jd"
+}
+
+设置为默认库：
+http://www.paiyou365.com/xpress1/repository/repositoryConnection/setdef
+req:
+{
+    "infodwid": "2b516976-b2fc-1032-8483-8970969f59e2"
+}
+res:
+{
+    "sta": 1,
+    "msg": "设置成功"
+}
+{
+    "sta": 0,
+    "msg": "设置失败"
+}
+
+设置为默认库：
+http://www.paiyou365.com/xpress1/repository/repositoryConnection/setvalid
+req:
+{
+    "id": "0fb247c0-aae0-1034-b6fe-2f2f5f4e6a2b",
+    "isValid":"0"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功"
+}
+{
+    "sta": 0,
+    "msg": "操作失败"
+}

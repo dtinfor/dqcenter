@@ -1,0 +1,195 @@
+显示选中列表：
+listWorkFlowTreev : 同listWorkFlowTree树  只多一个字段checked = true 表示勾选节点 
+
+
+列表：
+http://localhost:8080/xpress/repository/validateTargetv/list
+req:
+{
+	"targetid":23,
+	"targetname": "test",
+	"starttimes": 2,
+	"nodetype": "70",
+	"wfid": 9,
+	"ttype": "1",
+	"ppathval": "a/b/c"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "id": "s",
+                "ppathval": "a/b/c",
+                "isDel": "0",
+                "nodetype": "70",
+                "wfid": 9,
+                "ttype": "1",
+                "starttimes": 2,
+                "targetname": "test",
+                "targetid": 23,
+                "isValid": "1"
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增：
+http://localhost:8080/xpress/repository/validateTargetv/create
+listWorkFlowTree中：
+targetid=id
+targetname=name
+nodetype=type
+starttimes=3  默认为3吧
+ppathval= 向上追到type=71的上一级
+wfid= type=71的id
+ttype=1
+req:
+{
+	"ppathval": "a/b/c",			路径: 多folder开始吧
+	"isDel": "0",					是否删除：可以不传
+	"nodetype": "70",				节点类型
+	"wfid": 9,						工作流id
+	"ttype": "1",					目标类型:1工作流2节点
+	"starttimes": 2,				重启次数：可以不传
+	"targetname": "testsfesf",		节点名称
+	"targetid": 23					节点id
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "id": "e859b485-4705-1035-845c-56d62e656ef7",
+        "isDel": "0",
+        "isValid": "",
+        "nodetype": "70",
+        "ppathval": "a/b/c",
+        "starttimes": 2,
+        "targetid": 23,
+        "targetname": "testsfesf",
+        "ttype": "1",
+        "wfid": 9
+    }
+}
+
+修改：
+http://localhost:8080/xpress/repository/validateTargetv/update
+req:
+{
+	"id": "e859b485-4705-1035-845c-56d62e656ef7",
+	"isDel": "0",
+	"isValid": "1",
+	"nodetype": "70",
+	"ppathval": "a/b/c",
+	"starttimes": 2,
+	"targetid": 23,
+	"targetname": "xxx",
+	"ttype": "1",
+	"wfid": 9
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "id": "e859b485-4705-1035-845c-56d62e656ef7",
+        "isDel": "0",
+        "isValid": "1",
+        "nodetype": "70",
+        "ppathval": "a/b/c",
+        "starttimes": 2,
+        "targetid": 23,
+        "targetname": "xxx",
+        "ttype": "1",
+        "wfid": 9
+    }
+}
+
+
+获取单条记录：
+http://localhost:8080/xpress/repository/validateTargetv/pkone
+req:
+{
+	"id": "e859b485-4705-1035-845c-56d62e656ef7"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "id": "e859b485-4705-1035-845c-56d62e656ef7",
+        "isDel": "0",
+        "isValid": "0",
+        "nodetype": "70",
+        "ppathval": "a/b/c",
+        "starttimes": 2,
+        "targetid": 23,
+        "targetname": "xxx",
+        "ttype": "1",
+        "wfid": 9
+    }
+}
+
+验证是否存在：
+http://localhost:8080/xpress/repository/validateTargetv/validateExist
+req:
+{}
+res:
+{}
+
+
+列表中删除：
+http://localhost:8080/xpress/repository/validateTargetv/delete
+req:
+{
+	"id": "s"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "id": "s",
+        "isDel": "",
+        "isValid": "",
+        "nodetype": "",
+        "ppathval": "",
+        "starttimes": 0,
+        "targetid": 0,
+        "targetname": "",
+        "ttype": "",
+        "wfid": 0
+    }
+}
+
+树上删除：
+http://localhost:8080/xpress/repository/validateTargetv/deleteByTagid
+req:
+{
+	"targetid": "s"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "id": "s",
+        "isDel": "",
+        "isValid": "",
+        "nodetype": "",
+        "ppathval": "",
+        "starttimes": 0,
+        "targetid": 0,
+        "targetname": "",
+        "ttype": "",
+        "wfid": 0
+    }
+}
+

@@ -1,0 +1,191 @@
+
+显示左边树：异步出  如果resId为空则只显示两层，如果不为空则会显示4层结点    get,post
+http://localhost:8080/xpress/repository/monitor/lefttree?resId=
+{
+    "sta": 1,
+    "data": [
+        {
+            "ISPARENT": "1",
+            "OID": "1",
+            "NAME": "etl_res",
+            "PID": "-1r",
+            "NODETYPE": "reps",
+            "RUN_STATUS_CODE": "-100",
+            "OPID": "-1",
+            "ID": "1r",
+            "LEVELN": "1"
+        }
+    ],
+    "msg": "操作成功！"
+}
+http://localhost:8080/xpress/repository/monitor/lefttree?resId=2i
+req:
+   get, post 
+res:
+{
+    "sta": 1,
+    "data": [
+        {
+            "ISPARENT": "0",
+            "ICON": "../i/71.png",
+            "OID": "11",
+            "NAME": "wk_loadStage_channel2",
+            "PID": "2s",
+            "NODETYPE": "wrkf",
+            "RUN_STATUS_CODE": "-100",
+            "OPID": "2",
+            "ID": "11w",
+            "PNAME": "GJDW_OUTER",
+            "LEVELN": "4"
+        },
+        {
+            "ISPARENT": "0",
+            "ICON": "../i/71.png",
+            "OID": "9",
+            "NAME": "wk_LoadStage_channel",
+            "PID": "2s",
+            "NODETYPE": "wrkf",
+            "RUN_STATUS_CODE": "-100",
+            "OPID": "2",
+            "ID": "9w",
+            "PNAME": "GJDW_OUTER",
+            "LEVELN": "4"
+        },
+        {
+            "ISPARENT": "1",
+            "OID": "2",
+            "NAME": "GJDW_OUTER",
+            "PID": "2i",
+            "NODETYPE": "subj",
+            "RUN_STATUS_CODE": "-100",
+            "OPID": "2",
+            "ID": "2s",
+            "PNAME": "etl_inter",
+            "LEVELN": "3"
+        }
+    ],
+    "msg": "操作成功！"
+}
+
+获取下级节点的列表：    废除
+http://localhost:8080/xpress/repository/monitor/sub4pid?pid=3255w&leveln=6
+req: get, post
+ 参数：pid, leveln
+res:
+
+
+获取工作流run的树： 一次全部查询出来
+http://localhost:8080/xpress/repository/monitor/tree4pid
+req:
+{
+	"pid":"2i"
+} 
+res:
+{
+    "sta": 1,
+    "data": [
+         {
+            "ISPARENT": "1",
+            "OID": "2",
+            "NAME": "wk_LoadStage_channel",
+            "PID": "9w",
+            "NODETYPE": "wrkr",
+            "RUN_STATUS_CODE": "1",
+            "PNAME": "wk_LoadStage_channel",
+            "START_TIME": "2016-11-01 16:44:20.0",
+            "ICON": "../i/71.png",
+            "RUN_STATUS_NAME": "succeed",
+            "OPID": "9",
+            "ID": "2u",
+            "END_TIME": "2016-11-01 16:44:24.0",
+            "LEVELN": "5",
+            "COSTT":1
+        },
+        {
+            "ISPARENT": "0",
+            "OID": "3",
+            "NAME": "s_DW_STAGE_S_CONTACT",
+            "PID": "2u",
+            "NODETYPE": "68",
+            "RUN_STATUS_CODE": "3",
+            "PNAME": "wk_LoadStage_channel",
+            "START_TIME": "2016-11-01 16:44:20.0",
+            "ICON": "../i/68.png",
+            "RUN_STATUS_NAME": "failed",
+            "OPID": "2",
+            "ID": "3n",
+            "END_TIME": "2016-11-01 16:44:24.0",
+            "LEVELN": "6",
+            "COSTT":1
+        },
+    ],
+    "msg": "操作成功！"
+}
+
+
+获取节点信息列表：leveln>4时且 nodetype=wrkr时 需要一个topid(为顶层的opid)，如果
+http://localhost:8080/xpress/repository/monitor/nodeinfolist
+req:
+{
+	"oid":63439,
+    "opid":3255,
+    "topid":63439,
+	"leveln":5,
+    "nodetype":"wrkr"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "workflowSStatistics": [
+            {
+                "SUBJECT_AREA": "GJDW_OUTER",
+                "FIRST_ERROR_CODE": "1022",
+                "ACTUAL_START": "2016-10-02 16:00:01.0",
+                "CON_INSTANCE_NAME": "s_dw_stage_jy_ed_rmbbaseexchangerate",
+                "RUN_STATUS_CODE": "3",
+                "SUBJECT_ID": "38",
+                "LAST_ERROR": "CMN_1022 数据库驱动程序错误...\nCMN_1022 [\r\n数据库驱动程序错误...\r\n函数名称: Logon\r\nORA-28001: the password has expired\n\r\n数据库驱动程序错误...\r\n函数名称: Connect\r\n数据库错误: 无法使用用户 [dw_all] 和连接字符串 [loc] 连接到数据库。]\n",
+                "TOTAL_ERR": "0",
+                "SESSION_TIMESTAMP": "2016-10-02 16:00:03.0",
+                "SRC_SUCCESS_ROWS": "0",
+                "TOTAL_TRANS_ERRS": "0",
+                "SRC_FAILED_ROWS": "0",
+                "TARG_FAILED_ROWS": "0",
+                "MAPPING_NAME": "m_dw_stage_jy_ed_rmbbaseexchangerate",
+                "FIRST_ERROR_MSG": "CMN_1022 数据库驱动程序错误...\nCMN_1022 [\r\n数据库驱动程序错误...\r\n函数名称: Logon\r\nORA-28001: the password has expired\n\r\n数据库驱动程序错误...\r\n函数名称: Connect\r\n数据库错误: 无法使用用户 [dw_all] 和连接字符串 [loc] 连接到数据库。]\n",
+                "WORKFLOW_ID": "3255",
+                "TARG_SUCCESS_ROWS": "0",
+                "INSTANCE_ID": "3427",
+                "LAST_ERROR_CODE": "1022",
+                "TASK_VERSION_NUMBER": "1",
+                "WORKFLOW_VERSION_NUMBER": "1",
+                "START_TIME": "2016-10-02 16:00:01.0",
+                "WORKFLOW_NAME": "wf_Quotation",
+                "WORKFLOW_RUN_ID": "63439",
+                "SESSION_ID": "3210",
+                "END_TIME": "2016-10-02 16:00:03.0",
+                "SESSION_LOG_FILE": "E:\\Informatica\\PowerCenter8.6.1\\server\\infa_shared\\SessLogs\\m_dw_stage_jy_ed_rmbbaseexchangerate.log",
+                "WORKLET_RUN_ID": "0"
+            }
+        ],
+        "detail": [
+            {
+                "WORKFLOW_RUN_ID": "63439",
+                "TASK_TYPE": "71",
+                "USER_NAME": "admin",
+                "VERSION_NUMBER": "1",
+                "RUN_STATUS_CODE": "4",
+                "RUN_TYPE": "自动调度",
+                "START_TIME": "2016-10-02 16:00:01.0",
+                "END_TIME": "2016-10-02 16:01:09.0",
+                "WORKFLOW_NAME": "wf_Quotation",
+                "SERVER_NAME": "etl_inter"
+            }
+        ]
+    },
+    "msg": "操作成功！"
+}
+
+
+

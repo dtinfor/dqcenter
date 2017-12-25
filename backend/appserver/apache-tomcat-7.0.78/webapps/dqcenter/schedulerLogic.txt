@@ -1,0 +1,183 @@
+调试计划管理
+
+
+列表：
+http://localhost:8080/xpress/repository/schedulerLogic/list
+req:
+{
+	"schedulerName":"",
+	"userLogicType":"2"
+}
+res:
+{
+    "sta": 0,
+    "msg": "操作失败！"
+}
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "id": "1",
+                "startTime": "20140708142911",
+                "dailyLogic": "2",
+                "weeklyLogic": "wek1,wek3,wek4,wek5,wek6,wek7",
+                "schedulerName": "test",
+                "frequencyIntervl": 1,
+                "userLogicType": 2,
+                "usenum": 0,
+                "endTime": "99999999142911"
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增：
+http://localhost:8080/xpress/repository/schedulerLogic/create
+req:
+{
+                "startTime": "20150708142911",
+                "dailyLogic": "1",
+                "weeklyLogic": "wek1,wek3,wek4,wek5,wek6,wek7",
+                "schedulerName": "test1",
+                "frequencyIntervl": 1,
+                "userLogicType": 2,
+                "usenum": 0,
+                "endTime": "99999999142911"
+            }
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "dailyLogic": "1",
+        "endTime": "99999999142911",
+        "frequencyIntervl": 1,
+        "id": "e38374ee-b265-1034-9ce0-c4ea49ab8186",
+        "monthlyLogic": "",
+        "schedulerName": "test1",
+        "startTime": "20150708142911",
+        "userLogicType": 2,
+        "usenum": 0,
+        "weeklyLogic": "wek1,wek3,wek4,wek5,wek6,wek7"
+    }
+}
+
+修改：
+http://localhost:8080/xpress/repository/schedulerLogic/update
+req:
+{
+    "startTime": "20150708142911",
+    "dailyLogic": "1",
+    "weeklyLogic": "wek1,wek3,wek4,wek5,wek6,wek7",
+    "schedulerName": "test1",
+    "frequencyIntervl": 1,
+    "userLogicType": 1,
+    "endTime": "99999999142911",
+    "usenum": 2,
+	"id": "e38374ee-b265-1034-9ce0-c4ea49ab8186"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "dailyLogic": "1",
+        "endTime": "99999999142911",
+        "frequencyIntervl": 1,
+        "id": "e38374ee-b265-1034-9ce0-c4ea49ab8186",
+        "monthlyLogic": "",
+        "schedulerName": "test1",
+        "startTime": "20150708142911",
+        "userLogicType": 1,
+        "usenum": 2,
+        "weeklyLogic": "wek1,wek3,wek4,wek5,wek6,wek7"
+    }
+}
+
+
+获取单条记录：
+http://localhost:8080/xpress/repository/schedulerLogic/pkone
+req:
+{
+	"id": "1"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "dailyLogic": "2",
+        "endTime": "99999999142911",
+        "frequencyIntervl": 1,
+        "id": "1",
+        "monthlyLogic": "",
+        "schedulerName": "test",
+        "startTime": "20140708142911",
+        "userLogicType": 2,
+        "usenum": 2,
+        "weeklyLogic": "wek1,wek3,wek4,wek5,wek6,wek7"
+    }
+}
+
+验证是否存在：
+http://localhost:8080/xpress1/repository/schedulerLogic/validateExist
+req:
+{}
+res:
+{}
+
+
+删除：
+http://localhost:8080/xpress/repository/schedulerLogic/delete
+req:
+{
+	"id": "e38374ee-b265-1034-9ce0-c4ea49ab8186"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "dailyLogic": "",
+        "endTime": "",
+        "frequencyIntervl": 0,
+        "id": "e38374ee-b265-1034-9ce0-c4ea49ab8186",
+        "monthlyLogic": "",
+        "schedulerName": "",
+        "startTime": "",
+        "userLogicType": 0,
+        "weeklyLogic": ""
+    }
+}
+
+显示单选结点树：
+http://localhost:8080/xpress/repository/schedulerLogic/listNode
+req:
+{}
+res:
+{
+    "sta": 1,
+    "msg": "查询树成功",
+    "data": [
+        {
+            "id": "0",
+            "isParent": 1,
+            "name": "计划任务",
+            "pid": "",
+            "type": 2
+        },
+        {
+            "id": "1",
+            "isParent": 0,
+            "name": "test",
+            "pid": "0",
+            "type": 2
+        }
+    ]
+}

@@ -1,0 +1,185 @@
+
+
+获取self操作列表：
+http://localhost:8080/xpress/repository/validateOpts/listselfopts
+req:
+{}
+res:
+{
+    "sta": 1,
+    "msg": "查询selfOpt列表成功",
+    "data": [
+        {
+            "id": "f01c0b20-0d0e-1035-ad00-fb97003b2a20",
+            "optname": "test"
+        },
+        {
+            "id": "6127bbed-0d0f-1035-ad00-fb97003b2a20",
+            "optname": "第2个"
+        }
+    ]
+}
+
+
+列表：
+http://localhost:8080/xpress/repository/validateOpts/list
+req:
+{
+	"optname": "停"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "afteropt": "0",
+                "id": "sfefew",
+                "timeinterval": 0,
+                "optname": "停止",
+                "isDel": "0",
+                "opttype": "0",
+                "isdouble": "0",
+                "altontimes":"2"
+                "repettimes": 0,
+                "isimmediately": "0",
+                "isValid": "1"
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增：
+opttype动作类型:0无操作1重复
+isimmediately是否即时执行:1是0否
+altontimes尝试多少次发送消息 小于等于尝试次数
+repettimes尝试次数
+timeinterval间隔秒数
+isdouble时间是否翻倍
+afteropt动作:0无操作1正确则回归2全错停止
+
+http://localhost:8080/xpress/repository/validateOpts/create
+req:
+{
+    "afteropt": "2",
+    "timeinterval": "30",
+    "optname": "test",
+    "opttype": "1",
+    "isdouble": "1",
+    "altontimes": "2",
+    "repettimes": "3",
+    "isimmediately": "0"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "afteropt": "2",
+        "id": "525fc52d-0cd8-1035-9ee2-c4ec4fc7f888",
+        "isDel": "",
+        "isValid": "",
+        "isdouble": "1",
+        "isimmediately": "0",
+        "optname": "test",
+        "opttype": "1",
+         "altontimes": "2",
+        "repettimes": 3,
+        "timeinterval": 30
+    }
+}
+
+修改：
+http://localhost:8080/xpress/repository/validateOpts/update
+req:
+{
+	"id": "525fc52d-0cd8-1035-9ee2-c4ec4fc7f888",
+    "afteropt": "2",
+    "timeinterval": "30",
+    "optname": "重复3次停止",
+    "opttype": "1",
+    "isdouble": "1",
+     "altontimes": "2",
+    "repettimes": "3",
+    "isimmediately": "0"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "afteropt": "2",
+        "id": "525fc52d-0cd8-1035-9ee2-c4ec4fc7f888",
+        "isDel": "",
+        "isValid": "",
+        "isdouble": "1",
+        "isimmediately": "0",
+        "optname": "重复3次停止",
+        "opttype": "1",
+         "altontimes": "2",
+        "repettimes": 3,
+        "timeinterval": 30
+    }
+}
+
+
+获取单条记录：
+http://localhost:8080/xpress/repository/validateOpts/pkone
+req:
+{
+	"id": "4db8c9be-1092-1035-9b79-8877b93d045e"
+}
+res:
+{
+    "sta": 0,
+    "msg": "查询失败"
+}
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "afteropt": "2",
+        "altontimes": 3,
+        "id": "4db8c9be-1092-1035-9b79-8877b93d045e",
+        "isDel": "0",
+        "isValid": "1",
+        "isdouble": "1",
+        "isimmediately": "0",
+        "optname": "操作运行3次",
+        "opttype": "1",
+        "repettimes": 5,
+        "timeinterval": 30
+    }
+}
+
+
+
+删除：
+http://localhost:8080/xpress/repository/validateOpts/delete
+req:
+{
+	"id": "525fc52d-0cd8-1035-9ee2-c4ec4fc7f888"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "afteropt": "",
+        "id": "525fc52d-0cd8-1035-9ee2-c4ec4fc7f888",
+        "isDel": "",
+        "isValid": "",
+        "isdouble": "",
+        "isimmediately": "",
+        "optname": "",
+        "opttype": "",
+        "repettimes": 0,
+        "timeinterval": 0
+    }
+}
+

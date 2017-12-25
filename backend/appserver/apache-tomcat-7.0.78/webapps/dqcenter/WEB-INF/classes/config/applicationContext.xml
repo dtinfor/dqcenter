@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+            http://www.springframework.org/schema/context  
+            http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+            http://www.springframework.org/schema/jdbc  
+            http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd 
+            http://www.springframework.org/schema/task 
+            http://www.springframework.org/schema/task/spring-task-3.2.xsd
+			http://www.springframework.org/schema/cache
+			http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>file:E:/work/server/db.properties</value>
+				<value>file:E:/work/server/email.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean class="com.powerdq.comm.util.SpringContextHolder" />
+
+	<import resource="springmvc-mybatis.xml" />
+	<import resource="springmvc-mybatis-dw.xml" />
+
+	<!-- 数据源1配置 -->
+	<bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>${ds1_mysql.driver}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>${ds1_mysql.url}</value>
+		</property>
+		<property name="user">
+			<value>${ds1_mysql.username}</value>
+		</property>
+		<property name="password">
+			<value>${ds1_mysql.password}</value>
+		</property>
+		<property name="minPoolSize" value="5" />
+		<property name="maxPoolSize" value="100" />
+	</bean>
+	<bean id="sqlSessionFactory1" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource1" />
+		<property name="configLocation" value="classpath:config/mybatis-config.xml" />
+	</bean>
+
+	<bean id="repositoryInfodwService" class="com.powerdq.service.repository.RepositoryInfodwService" />
+	<bean id="validateOptsService" class="com.powerdq.service.repository.ValidateOptsService" />
+	<bean id="schedulerLogicService" class="com.powerdq.service.repository.SchedulerLogicService" />
+	<bean id="validateMsgService" class="com.powerdq.service.repository.ValidateMsgService" />
+	<bean id="contactMethodService" class="com.powerdq.service.system.ContactMethodService" />
+	<bean id="validateSqlVarService" class="com.powerdq.service.repository.ValidateSqlVarService" />
+	<bean id="validateCustService" class="com.powerdq.service.repository.ValidateCustService" />
+
+	<!--事务处理 -->
+	<bean id="transactionManager1"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref local="dataSource1" />
+		</property>
+		<qualifier value="FACore" />
+	</bean>
+	<!-- 拦截器 -->
+	<bean id="transactionInterceptor1" abstract="true"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager1"></property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="select*">PROPAGATION_REQUIRED, readOnly</prop>
+				<prop key="get*">PROPAGATION_REQUIRED, readOnly</prop>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- dw数据源 -->
+	<bean id="dynamicDataSource" class="com.powerdq.comm.datasource.DynamicDataSource">
+		<!-- 通过key-value的形式来关联数据源 -->
+		<property name="targetDataSources">
+			<map>
+			</map>
+		</property>
+	</bean>
+	<bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dynamicDataSource" />
+		<property name="configLocation" value="classpath:config/mybatis-config-dw.xml" />
+	</bean>
+	<bean id="transactionManager2"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref local="dynamicDataSource" />
+		</property>
+		<qualifier value="insurance" />
+	</bean>
+	<bean id="transactionInterceptor2" abstract="true"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager2"></property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="select*">PROPAGATION_REQUIRED, readOnly</prop>
+				<prop key="get*">PROPAGATION_REQUIRED, readOnly</prop>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="cacheManager"
+		class="org.springframework.cache.concurrent.ConcurrentMapCacheManager">
+	</bean>
+
+	<!-- 定时任务 -->
+	<task:executor id="executor" pool-size="5" />
+	<task:scheduler id="scheduler" pool-size="10" />
+	<task:annotation-driven executor="executor"
+		scheduler="scheduler" />
+
+	<!-- 定制校验 -->
+	<bean id="jobDetailBean" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.powerdq.service.dquality.CustDataValidationJob"></property>
+	</bean>
+	<bean id="cronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobDetailBean"></property>
+		<property name="cronExpression" value="0 0/1 * * * ?" />
+	</bean>
+
+	<!-- 校验实例化 -->
+	<bean id="jobMsgInit" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.powerdq.service.dquality.MsgInstantJob"></property>
+	</bean>
+	<bean id="cronTriggerMsgInit" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobMsgInit"></property>
+		<property name="cronExpression" value="0 0/2 * * * ?" />
+	</bean>
+
+	<!-- 校验消息发送 -->
+	<bean id="jobMsgSend" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.powerdq.service.dquality.MsgSendJob"></property>
+	</bean>
+	<bean id="cronTriggerMsgSend" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobMsgSend"></property>
+		<property name="cronExpression" value="0 0/1 * * * ?" />
+	</bean>
+
+	<!-- 智能校验-每天00:01初始化数据 -->
+	<bean id="jobSmtInitData" class="com.powerdq.service.dquality.smt.CallerManagerJob">
+		<property name="smartAuditCaller"
+			value="com.powerdq.service.dquality.smt.StatsInitDataPrc" />
+	</bean>
+	<bean id="jobDetailSmtInitData"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="jobSmtInitData" />
+		<property name="targetMethod" value="executeInternal" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="cronTriggerSmtInitData" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobDetailSmtInitData"></property>
+		<property name="cronExpression" value="0 1  0 * * ?" />
+	</bean>
+
+	<!-- 智能校验-实时扫描新并准备数据 -->
+	<bean id="jobSmtAddData" class="com.powerdq.service.dquality.smt.CallerManagerJob">
+		<property name="smartAuditCaller"
+			value="com.powerdq.service.dquality.smt.StatsAddDataPrc" />
+	</bean>
+	<bean id="jobDetailSmtAddData"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="jobSmtAddData" />
+		<property name="targetMethod" value="executeInternal" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="cronTriggerSmtAddData" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobDetailSmtAddData"></property>
+		<property name="cronExpression" value="0 0/2 * * * ?" />
+	</bean>
+
+	<!-- 智能校验-实时计算数据 -->
+	<bean id="jobSmtValid" class="com.powerdq.service.dquality.smt.CallerManagerJob">
+		<property name="smartAuditCaller"
+			value="com.powerdq.service.dquality.smt.SmartValidation" />
+	</bean>
+	<bean id="jobDetailSmtValid"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="jobSmtValid" />
+		<property name="targetMethod" value="executeInternal" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="cronTriggerSmtValid" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobDetailSmtValid"></property>
+		<property name="cronExpression" value="0 0/3 * * * ?" />
+	</bean>
+
+	<!-- 智能校验-报表数据 -->
+	<bean id="jobSmtAddReport" class="com.powerdq.service.dquality.smt.CallerManagerJob">
+		<property name="smartAuditCaller"
+			value="com.powerdq.service.dquality.smt.StatsAddReportPrc" />
+	</bean>
+	<bean id="jobDetailSmtAddReport"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="jobSmtAddReport" />
+		<property name="targetMethod" value="executeInternal" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="cronTriggerSmtAddReport" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="jobDetailSmtAddReport"></property>
+		<property name="cronExpression" value="0 0/4 * * * ?" />
+	</bean>
+
+	<!-- 工作流错误启动尝试 -->
+	<bean id="sVaildateResetJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.powerdq.service.dquality.chkallerr.SVaildateResetJob"></property>
+	</bean>
+	<bean id="cronTriggerResetJob" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="sVaildateResetJob"></property>
+		<property name="cronExpression" value="0 0/1 * * * ?" />
+	</bean>
+	<!-- 执行错误启动尝试 -->
+	<bean id="sVaildateSendtJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.powerdq.service.dquality.chkallerr.SVaildateSendtJob"></property>
+	</bean>
+	<bean id="cronTriggersVSendJob" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="sVaildateSendtJob"></property>
+		<property name="cronExpression" value="0 0/1 * * * ?" />
+	</bean>
+
+	<!-- info健康检查:执行ping尝试 -->
+	<bean id="sCheckInfoHealthJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.powerdq.service.dquality.chkallerr.CheckInfoHealthJob"></property>
+	</bean>
+	<bean id="cronTriggerscCHealthJob" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="sCheckInfoHealthJob"></property>
+		<property name="cronExpression" value="0 0/2 * * * ?" />
+	</bean>
+	<!-- 应用数据库连接校验 -->
+	<bean id="checkLocalHostJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.powerdq.service.dquality.chkallerr.CheckLocalHostJob"></property>
+	</bean>
+	<bean id="cronTriggerHostJob" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="checkLocalHostJob"></property>
+		<property name="cronExpression" value="0 17 * * * ?" />
+	</bean>
+	<!-- 自定义检查任务load -->
+	<bean id="schJob" class="com.powerdq.service.dquality.StartSchJob">
+		<property name="scheduler" ref="schedulerFactory" />
+	</bean>
+	<bean id="startSchJob"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="schJob" />
+		<property name="targetMethod" value="runStart" />
+		<property name="concurrent" value="false" />
+	</bean>
+	<bean id="startTrigger_Once" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="startSchJob" />
+		<property name="startDelay" value="15000" />
+		<property name="repeatInterval" value="6000" />
+		<property name="repeatCount">
+			<value>0</value>
+		</property>
+	</bean>
+
+	<!-- 所有的定时任务 -->
+	<bean id="schedulerFactory"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<!-- <ref bean="startTrigger_Once" /> -->
+				<!-- <ref bean="cronTriggerBean"/> -->
+
+				<!-- <ref bean="cronTriggerMsgInit"/> -->
+				<!-- <ref bean="cronTriggerResetJob"/> -->
+				<!-- <ref bean="cronTriggersVSendJob"/> -->
+
+				<!-- <ref bean="cronTriggerMsgSend"/> -->
+
+
+				<!-- <ref bean="cronTriggerSmtInitData"/> -->
+				<!-- <ref bean="cronTriggerSmtAddData"/> -->
+				<!-- <ref bean="cronTriggerSmtValid"/> -->
+				<!-- <ref bean="cronTriggerSmtAddReport"/> -->
+
+				<!-- <ref bean="cronTriggerHostJob"/> -->
+				<!-- <ref bean="cronTriggerscCHealthJob"/> -->
+
+			</list>
+		</property>
+	</bean>
+
+	<!-- 更新引用次数 -->
+	<bean id="jobConnUseNum" class="com.powerdq.service.job.ConnUsenumJob" />
+	<bean id="jobSchLogicUseNum" class="com.powerdq.service.job.SchLogicUsenumJob" />
+	<bean id="jobParaUseNum" class="com.powerdq.service.job.ParaUsenumJob" />
+	<task:scheduled-tasks>
+		<task:scheduled ref="jobConnUseNum" method="executeInternal"
+			cron="0 0/1 * * * ?" />
+		<task:scheduled ref="jobSchLogicUseNum" method="executeInternal"
+			cron="0 0/1 * * * ?" />
+		<task:scheduled ref="jobParaUseNum" method="executeInternal"
+			cron="0 0/1 * * * ?" />
+	</task:scheduled-tasks>
+
+	<!-- 自动搜索@Controller标注的类 -->
+	<context:component-scan base-package="com.powerdq.service" />
+	<context:component-scan base-package="com.powerdq.dao" />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource"
+		p:basename="i18n/messages" />
+
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${email.host}" />
+		<property name="username" value="${email.username}" />
+		<property name="password" value="${email.password}" />
+		<property name="defaultEncoding" value="UTF-8" />
+
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 异步的邮件发送器 -->
+	<bean id="asyncJavaMailSender" class="com.copj.modules.utils.send.mail.AsyncJavaMailSender">
+		<property name="sendMailThreadPoolSize" value="3" />
+		<property name="javaMailSender" ref="javaMailSender" />
+		<property name="sendfrom" value="${email.from}" />
+	</bean>
+	<bean id="AppInit" class="com.copj.modules.utils.AppInit"
+		init-method="init" destroy-method="destroy" scope="singleton"
+		lazy-init="false" />
+</beans>

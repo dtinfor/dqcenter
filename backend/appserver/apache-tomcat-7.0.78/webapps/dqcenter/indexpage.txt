@@ -1,0 +1,273 @@
+
+概览列表：
+http://localhost:8080/xpress/repository/indexpage/overview
+req: selDate 默认当前日期
+{
+	"selDate":"2016-11-01"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "BTYPE": "done",
+                "RUNNUM": "0"
+            },
+            {
+                "BTYPE": "readerr",
+                "RUNNUM": "0"
+            },
+            {
+                "BTYPE": "writeerr",
+                "RUNNUM": "0"
+            },
+            {
+                "BTYPE": "runerr",
+                "RUNNUM": "0"
+            },
+            {
+                "BTYPE": "sv",
+                "RUNNUM": "0"
+            },
+            {
+                "BTYPE": "bv",
+                "RUNNUM": "1"
+            }
+        ],
+        "totalCount": 6,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+显示校验信息：
+http://localhost:8080/xpress/repository/indexpage/vlist
+req:  btype:bv , selDate上面带过来
+{
+	"selDate":"2016-11-24",
+	"pageNo":"1",
+	"pageSize":"10",
+	"btype":"bv",
+	"svalue":"o"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "sid": "391ff22d-ddb7-1034-be60-489822e1046f",
+                "vailname": "opportunity",
+                "typecode": "0",
+                "Validate_Time_End": "16-11-24 03:02:08",
+                "rstypevalue": "成功",
+                "rs_type": 1,
+                "trigger_id": "1",
+                "ispush": "1",
+                "msg": "test001",
+                "validate_time": "16-10-12 03:02:03",
+                "typename": "定时",
+                "validate_name": "test001",
+                "statu": "1"
+            }
+        ],
+        "totalCount": 0,
+        "pageNo": 1,
+        "pageSize": 10,
+        "totalPage": 0
+    },
+    "msg": "操作成功！"
+}
+
+显示校验信息历史：
+http://localhost:8080/xpress/repository/indexpage/vhislist
+req:  btype:bv ; sid 选中记录编号, selDate上面带过来
+{
+	"selDate":"2016-11-24",
+	"btype":"bv",
+	"sid":"391"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "vailname": "opportunity",
+                "typecode": "0",
+                "rs_type": 1,
+                "B_TARG_SUCCESS_ROWS": "成功",			写入记录
+                "trigger_id": "1",
+                "validate_name": "test001",
+                "ispush": "1",
+                "START_TIME": "2016-10-12 03:02:03",   	开始时间
+                "END_TIME": "2016-11-24 03:02:08",		结束时间
+                "statu": "1",
+                "msg": "test001"
+            }
+        ],
+        "totalCount": 0,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 0
+    },
+    "msg": "操作成功！"
+}
+
+
+显示运行任务信息：
+http://localhost:8080/xpress/repository/indexpage/wtlist
+req:  btype:done,readerr ,runerr,writeerr,sv   , selDate:上面带过来, svalue:文件夹名等
+sv下级  svt: 3：正常，2：一级警告，1：二级警告，0：三级警告
+{
+	"selDate":"2016-11-01",
+	"pageNo":"1",
+	"pageSize":"10",
+	"btype":"done",
+	"svt":"0,1,2" --三选1
+	"svalue":"O"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "B_SRC_FAILED_ROWS": "0",
+                "INSTANCE_ID": "3",
+                "B_TARG_SUCCESS_ROWS": "0",
+                "B_TARG_FAILED_ROWS": "0",
+                "SUBJECT_ID": "2",
+                "START_TIME": "2016-11-01 16:44:20.0",
+                "WORKFLOW_NAME": "wk_LoadStage_channel",
+                "INSTANCE_NAME": "s_DW_STAGE_S_CONTACT",
+                "WORKFLOW_RUN_ID": "2",
+                "SUBJ_NAME": "GJDW_OUTER",
+                "RUN_STATUS_NAME": "failed",
+                "ROWNUM_": "1",
+                "B_SRC_SUCCESS_ROWS": "0",
+                "END_TIME": "2016-11-01 16:44:24.0",
+                "WORKFLOW_ID": "9",
+                "INTELL_CHECK": "一级警告",
+                "INTELL_CODE": "2"
+            },
+            {
+                "B_SRC_FAILED_ROWS": "0",
+                "INSTANCE_ID": "11",
+                "B_TARG_SUCCESS_ROWS": "635555",
+                "B_TARG_FAILED_ROWS": "0",
+                "SUBJECT_ID": "2",
+                "START_TIME": "2016-11-01 16:45:26.0",
+                "WORKFLOW_NAME": "wk_loadStage_channel2",
+                "INSTANCE_NAME": "s_DW_STAGE_S_CONTACT",
+                "WORKFLOW_RUN_ID": "3",
+                "SUBJ_NAME": "GJDW_OUTER",
+                "RUN_STATUS_NAME": "succeed",
+                "ROWNUM_": "2",
+                "B_SRC_SUCCESS_ROWS": "635555",
+                "END_TIME": "2016-11-01 16:46:44.0",
+                "WORKFLOW_ID": "11",
+                "INTELL_CHECK": "警告"
+            }
+        ],
+        "totalCount": 2,
+        "pageNo": 1,
+        "pageSize": 10,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+显示运行任务信息历史：
+http://localhost:8080/xpress/repository/indexpage/wthislist
+req: sid:上面的 INSTANCE_ID, 报表｜监控信息：智能校验历史记录也用这个api
+{
+	"sid":"1725",
+	pageSize: "10"			页大小要60条的话，值为60
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "BXT": "1",
+                "INSTANCE_ID": "1725",
+                "B_TARG_SUCCESS_ROWS": "1725",								写入记录
+                "HTW": "-1",
+                "SUBJECT_ID": "24",
+                "START_TIME": "2016-11-24 15:44:37.0",						开始时间
+                "INSTANCE_NAME": "s_DW_OLAP_T_RELCUR_CUSTOMER_PRODUCT_2",
+                "WORKFLOW_RUN_ID": "2314825",
+                "CURDATA": "-1",
+                "SDV": "1",
+                "ROWNUM_": "1",
+                "END_TIME": "2016-04-02 05:10:27.0",						结束时间
+                "TIMEGAUS": "0.133615456321237187244584789059340923514",
+                "WORKFLOW_ID": "1642"
+            },
+            {
+                "BXT": "1",
+                "INSTANCE_ID": "1725",
+                "HTW": "-1",
+                "B_TARG_SUCCESS_ROWS": "1725",
+                "SUBJECT_ID": "24",
+                "LAG_1": "1725",
+                "START_TIME": "2016-11-24 15:44:37.0",
+                "DIFF": "0",
+                "INSTANCE_NAME": "s_DW_OLAP_T_RELCUR_CUSTOMER_PRODUCT_2",
+                "WORKFLOW_RUN_ID": "2315723",
+                "CURDATA": "-1",
+                "SDV": "1",
+                "ROWNUM_": "2",
+                "TIMEGAUS": "0.133615456321237187244584789059340923514",
+                "END_TIME": "2016-04-03 05:10:24.0",
+                "WORKFLOW_ID": "1642"
+            } ],
+        "totalCount": 61,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 4
+    },
+    "msg": "操作成功！"
+}
+
+
+
+-----弃用  改用上面新的----begin----
+等同于：analyze,耗时分析 　节点历史耗时折线图列表数据wkflownodehislist：   有个问题   b.task_type != 70 的不显示 是不是正确，如果不对则需要重新启用下面的方法
+
+req: selDate:上面带过来, sid:上面的 INSTANCE_ID
+{
+	"pageNo":"1",
+    "pageSize":"60",
+    "selDate":"2016-11-02",
+	"sid":"11"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "B_SRC_FAILED_ROWS": "0",
+                "INSTANCE_ID": "3",
+                "B_TARG_SUCCESS_ROWS": "0",				写入记录
+                "ROWNUM_": "1",
+                "B_TARG_FAILED_ROWS": "0",
+                "B_SRC_SUCCESS_ROWS": "0",
+                "START_TIME": "2016-11-01 16:44:20.0",  开始
+                "END_TIME": "2016-11-01 16:44:24.0"		结束时间
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 60,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+-----弃用  改用上面新的---end-----

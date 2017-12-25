@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <link rel="icon" type="image/png" href="img/favicon.ico">
+  <title>数据质量检测中心</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body class="login">
+  <div class="login-container">
+    <div class="img-content">
+      <div class="info-img big"></div>
+      <a class="info-img small" href="statics/DQCenter_系统用户手册_V0.1.doc"></a>
+      <div class="info-img big"></div>
+      <div class="info-img small"></div>
+    </div>
+    <div class="login-content">
+      <h1>系统登录</h1>
+      <div class="action-content">
+        <div class="username">
+          <span class="icon">
+            <i class="fa fa-2x fa-user"></i>
+          </span>
+          <span class="ipt">
+            <input id="un" type="text" placeholder="请输入用户名">
+          </span>
+        </div>
+        <div class="password">
+          <span class="icon">
+            <i class="fa fa-2x fa-lock"></i>
+          </span>
+          <span class="ipt">
+            <input id="pw" type="password" placeholder="请输入密码">
+          </span>
+        </div>
+      </div>
+      <div>
+        <button id="login">登录</button>
+      </div>
+    </div>
+    <div class="tip-info">请使用Chrome、IE11（非兼容模式）或Firefox浏览器浏览本网站</div>
+  </div>
+  <script src="js/config.js"></script>
+  <script src="lib/requirejs/require.js"></script>
+  <script>
+    require(["js/require-config.js"], function () {
+      require(["app/login"])
+    })
+  </script>
+</body>
+
+</html>

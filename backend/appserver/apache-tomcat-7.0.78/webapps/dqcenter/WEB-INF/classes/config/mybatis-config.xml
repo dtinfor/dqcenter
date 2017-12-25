@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <properties>
+    <property name="dialect" value="mysql"/>
+  </properties>
+  <settings>
+    <setting name="jdbcTypeForNull" value="NULL"/>
+  </settings>
+  <typeAliases>
+    <!-- system beans -->
+    <typeAlias alias="city" type="com.powerdq.entity.system.AuCity"/>
+    <typeAlias alias="menu" type="com.powerdq.entity.system.AuMenu"/>
+    <typeAlias alias="org" type="com.powerdq.entity.system.AuOrg"/>
+    <typeAlias alias="post" type="com.powerdq.entity.system.AuPost"/>
+    <typeAlias alias="role" type="com.powerdq.entity.system.AuRole"/>
+    <typeAlias alias="user" type="com.powerdq.entity.system.AuUser"/>
+    <typeAlias alias="contactMethod" type="com.powerdq.entity.system.ContactMethod"/>
+    <typeAlias alias="repositoryConnection" type="com.powerdq.entity.repository.RepositoryConnection"/>
+  </typeAliases>
+  <plugins>
+    <plugin interceptor="com.powerdq.comm.util.interceptor.PaginationInterceptor"/>
+  </plugins>
+  <mappers>
+    <!-- system mapper -->
+    <mapper resource="com/powerdq/dao/system/mapper/AuCityMapper.xml"/>
+    <mapper resource="com/powerdq/dao/system/mapper/AuMenuMapper.xml"/>
+    <mapper resource="com/powerdq/dao/system/mapper/AuOrgMapper.xml"/>
+    <mapper resource="com/powerdq/dao/system/mapper/AuPostMapper.xml"/>
+    <mapper resource="com/powerdq/dao/system/mapper/AuRoleMapper.xml"/>
+    <mapper resource="com/powerdq/dao/system/mapper/AuUserMapper.xml"/>
+    <mapper resource="com/powerdq/dao/system/mapper/ContactMethodMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateResultMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/RepositoryConnectionMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateCustMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateSqlMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/OpbSessTaskLogMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateSqlVarMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/RepositoryInfodwMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/SchedulerMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/SchedulerLogicMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateMsgMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateMsgsendtoMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateMsgSendDetailMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateOptsMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateTargetvMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateTargetsConfMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateTargetsMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/ValidateTargetsReceiMapper.xml"/>
+  </mappers>
+</configuration>

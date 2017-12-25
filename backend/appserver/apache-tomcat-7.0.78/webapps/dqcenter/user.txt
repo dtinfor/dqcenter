@@ -1,0 +1,197 @@
+用户管理
+
+列表：
+http://localhost:8080/xpress/system/user/list
+req:
+{
+	"username":""
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "id": "1",
+                "passwd": "qwqw",
+                "isDel": "0",
+                "username": "qwqw",
+                "email": "SuperAdmin@test.com",
+                "realname": "超级管理员",
+                "isValid": "1"
+            }
+        ],
+        "totalCount": 5,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增：
+http://localhost:8080/xpress/system/user/create
+req:
+{
+    "passwd": "111",
+    "isDel": "0",
+    "username": "qwqw",
+    "email": "jiang@test.com",
+    "realname": "超t",
+    "isValid": "1"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "createDate": "",
+        "createUserId": "",
+        "createUserName": "",
+        "email": "jiang@test.com",
+        "id": "",
+        "isDel": "0",
+        "isValid": "1",
+        "lastUpdateDate": "",
+        "lastUpdateUserId": "",
+        "lastUpdateUserName": "",
+        "loginIp": "",
+        "loginTime": "",
+        "passwd": "698d51a19d8a121ce581499d7b701668",
+        "realname": "超t",
+        "username": "qwqw"
+    }
+}
+
+修改：
+http://localhost:8080/xpress/system/user/update
+req:
+{
+    "passwd": "1111",
+    "isDel": "0",
+    "username": "qwqw",
+    "email": "jiang222@test.com",
+    "realname": "超t",
+    "isValid": "1",
+"id":"1424f55d-1fd5-1035-88de-6cf37c96799c"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "createDate": "",
+        "createUserId": "",
+        "createUserName": "",
+        "email": "jiang222@test.com",
+        "id": "1424f55d-1fd5-1035-88de-6cf37c96799c",
+        "isDel": "0",
+        "isValid": "1",
+        "lastUpdateDate": "",
+        "lastUpdateUserId": "",
+        "lastUpdateUserName": "",
+        "loginIp": "",
+        "loginTime": "",
+        "passwd": "b59c67bf196a4758191e42f76670ceba",
+        "realname": "超t",
+        "username": "qwqw"
+    }
+}
+
+
+获取单条记录：
+http://localhost:8080/xpress/system/user/pkone
+req:
+{
+	"id":"db969f25-1fd3-1035-88de-6cf37c96799c"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "createDate": "",
+        "createUserId": "",
+        "createUserName": "",
+        "email": "jiang222@test.com",
+        "id": "1424f55d-1fd5-1035-88de-6cf37c96799c",
+        "isDel": "0",
+        "isValid": "1",
+        "lastUpdateDate": "",
+        "lastUpdateUserId": "",
+        "lastUpdateUserName": "",
+        "loginIp": "",
+        "loginTime": "",
+        "passwd": "b59c67bf196a4758191e42f76670ceba",
+        "realname": "超t",
+        "username": "qwqw"
+    }
+}
+
+验证是否存在：
+http://localhost:8080/xpress/system/user/validateExist
+req:
+{
+	"username":"qwqw1",
+    "id":"1424f55d-1fd5-1035-88de-6cf37c96799c"
+}
+res:
+{
+    "sta": 1,
+    "msg": "存在相同记录",
+    "data": false
+}
+{
+    "sta": 1,
+    "msg": "不存在相同记录",
+    "data": true
+}
+
+
+删除：
+http://localhost:8080/xpress/system/user/delete
+req:
+{
+	"id":"db969f25-1fd3-1035-88de-6cf37c96799c"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "email": "",
+        "id": "db969f25-1fd3-1035-88de-6cf37c96799c",
+        "isDel": "",
+        "isValid": "",
+        "loginIp": "",
+        "loginTime": "",
+        "realname": "",
+        "username": ""
+    }
+}
+
+设置密码：
+http://localhost:8080/xpress/system/user/setpwd
+req:
+{
+	"id":"db969f25-1fd3-1035-88de-6cf37c96799c",
+	"newpwd":"222"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}
+
+自己修改密码：
+http://localhost:8080/xpress/system/user/chagepwd
+req:
+{
+	"oldpwd":"111111",
+	"newpwd":"111122211"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！"
+}

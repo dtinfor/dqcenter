@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <properties>
+    <property name="dialect" value="oracle"/>
+  </properties>
+  <settings>
+    <setting name="jdbcTypeForNull" value="NULL"/>
+  </settings>
+  <typeAliases>
+    <!-- system beans -->
+    <typeAlias alias="dwTree" type="com.powerdq.entity.repository.DwTree"/>
+  </typeAliases>
+  <plugins>
+    <plugin interceptor="com.powerdq.comm.util.interceptor.PaginationInterceptor"/>
+  </plugins>
+  <mappers>
+    <!-- system mapper -->
+    <mapper resource="com/powerdq/dao/repository/mapper/DwTreeMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/OpbTaskInstRunMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/TaskInstRunMonitorMapper.xml"/>
+    <mapper resource="com/powerdq/dao/repository/mapper/OpbWflowRunMapper.xml"/>
+  </mappers>
+</configuration>

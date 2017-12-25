@@ -1,0 +1,160 @@
+验证消息结果模版
+
+
+列表：
+http://localhost:8080/xpress/repository/validateMsg/list
+req:
+{}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "id": "12",
+                "aftopt": "2",
+                "sqlId": "1",
+                "ispush": "1",
+                "msgType": 1,
+                "msg": "成功 "
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增：
+http://localhost:8080/xpress/repository/validateMsg/create
+req:
+{
+    "aftopt": "2",
+    "sqlId": "1",
+    "ispush": "1",
+    "msgType": 0,
+    "msg": "失败 "
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "aftopt": "2",
+        "id": "0bddcd82-b28c-1034-9ce0-c4ea49ab8186",
+        "ispush": "1",
+        "msg": "失败 ",
+        "msgType": 0,
+        "sqlId": "1"
+    }
+}
+
+修改：
+http://localhost:8080/xpress/repository/validateMsg/update
+req:
+{
+        "id": "0bddcd82-b28c-1034-9ce0-c4ea49ab8186",
+    "aftopt": "2",
+    "sqlId": "1",
+    "ispush": "1",
+    "msgType": 0,
+    "msg": "失败 不能做东西了 "
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "aftopt": "2",
+        "id": "0bddcd82-b28c-1034-9ce0-c4ea49ab8186",
+        "ispush": "1",
+        "msg": "失败 不能做东西了 ",
+        "msgType": 0,
+        "sqlId": "1"
+    }
+}
+
+
+获取单条记录：
+http://localhost:8080/xpress/repository/validateMsg/pkone
+req:
+{
+        "id": "0bddcd82-b28c-1034-9ce0-c4ea49ab8186"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "aftopt": "2",
+        "id": "0bddcd82-b28c-1034-9ce0-c4ea49ab8186",
+        "ispush": "1",
+        "msg": "失败 不能做东西了 ",
+        "msgType": 0,
+        "sqlId": "1"
+    }
+}
+
+删除：
+http://localhost:8080/xpress/repository/validateMsg/delete
+req:
+{
+        "id": "0bddcd82-b28c-1034-9ce0-c4ea49ab8186"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "aftopt": "",
+        "id": "0bddcd82-b28c-1034-9ce0-c4ea49ab8186",
+        "ispush": "",
+        "msg": "",
+        "msgType": 0,
+        "sqlId": ""
+    }
+}
+
+
+查询校验日志列表：
+http://localhost:8080/xpress/repository/validateMsg/listrslog
+req:
+{
+    "validate_name": "test001",
+    "triggerName": "opportunity",
+    "trigger_type": "1",
+    "Validate_Time_End_b": "2016-10-12 03:02:06",
+    "Validate_Time_End_e": "2016-10-13 03:02:09",
+    "rs_type": "1",
+    "pageNo":"1",
+    "pageSize":"10"
+}
+res:  齿轮：调用 校验配置：validateCust/pkone 参数id同下面的结果id
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "id": "391ff22d-ddb7-1034-be60-489822e1046f",
+                "msg_type_id": "1",
+                "MSG": "执行错误了",
+                "Validate_Time_End": "2016-10-12 03:02:08",
+                "AFTOPT": "1",
+                "ISPUSH": "1",
+                "remark": "opportunity",
+                "rs_type": 1,
+                "trigger_id": "1",
+                "validate_name": "test001",
+                "trigger_type": "0"
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 10,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+

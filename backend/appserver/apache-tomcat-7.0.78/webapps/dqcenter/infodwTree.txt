@@ -1,0 +1,207 @@
+﻿
+校验配置中使用：
+去除了4层集合，排除了start结点
+显示工作流全量树列表 非异步，一次性全出,量很大：
+http://localhost:8080/xpress/business/dwTree/listWorkFlowTree
+req:
+{}
+res:
+{
+    "sta": 1,
+    "msg": "查询跟随树成功",
+    "data": [
+        {
+            "id": "901",
+            "pid": "68_5",
+            "name": "Acitivity",
+            "value": 3,
+            "type": 68
+        },
+        {
+            "id": "3200",
+            "icon": "../i/68.png",
+            "name": "s_DW_ODS_CRM_S_PROD_INT",
+            "value": 3359,
+            "pid": "3202",
+            "type": 68
+        }]
+}
+
+工作流中使用： 
+左边树，异步加载：  工作集集合type=700 工作流集合type=711
+http://localhost:8080/xpress1/business/dwTree/list   根
+http://localhost:8080/xpress1/business/dwTree/list?id=0   根下面的所有文件夹
+http://localhost:8080/xpress1/business/dwTree/list?id=4&type=0	文件夹下面的四种
+http://localhost:8080/xpress1/business/dwTree/list?id=71_4&type=71	工作流列表    (不再显示worklet的树，只到下面的一层)
+http://localhost:8080/xpress1/business/dwTree/list?id=1822&type=70	工作流集合中的工作流的子节点worklet的下级树或工作集集合下面worklet的树
+
+req:
+{}
+res:
+{
+    "result": [
+        {
+            "name": "GJDW",
+            "type": 0,
+            "pid": "0",
+            "isParent": 1,
+            "iconSkin": "pIcon01",
+            "instid": 0,
+            "id": "4",
+            "createUserId": null,
+            "createUserName": null,
+            "createDate": null,
+            "lastUpdateUserId": null,
+            "lastUpdateUserName": null,
+            "lastUpdateDate": null
+        },
+        {
+            "name": "GJDW_EDW",
+            "type": 0,
+            "pid": "0",
+            "isParent": 1,
+            "iconSkin": "pIcon01",
+            "instid": 0,
+            "id": "29",
+            "createUserId": null,
+            "createUserName": null,
+            "createDate": null,
+            "lastUpdateUserId": null,
+            "lastUpdateUserName": null,
+            "lastUpdateDate": null
+        },
+        {
+            "name": "GJDW_HS",
+            "type": 0,
+            "pid": "0",
+            "isParent": 1,
+            "iconSkin": "pIcon01",
+            "instid": 0,
+            "id": "30",
+            "createUserId": null,
+            "createUserName": null,
+            "createDate": null,
+            "lastUpdateUserId": null,
+            "lastUpdateUserName": null,
+            "lastUpdateDate": null
+        },
+        {
+            "name": "GJDW_INNER",
+            "type": 0,
+            "pid": "0",
+            "isParent": 1,
+            "iconSkin": "pIcon01",
+            "instid": 0,
+            "id": "25",
+            "createUserId": null,
+            "createUserName": null,
+            "createDate": null,
+            "lastUpdateUserId": null,
+            "lastUpdateUserName": null,
+            "lastUpdateDate": null
+        }],
+    "status": "success",
+    "msg": null
+}
+
+查看uml图： get   nodes:0名称1行2列3id4列5类型
+http://localhost:8080/xpress/business/dwTree/umldata
+req:
+{
+	"instid":"3428"
+}
+res:
+{
+	"result": {
+		"nodes": [["Command",
+		"0",
+		"1",
+		"3407",
+		"1",
+		"58"],
+		["Decision",
+		"0",
+		"2",
+		"3409",
+		"2",
+		"59"],
+		["Control",
+		"0",
+		"3",
+		"3406",
+		"3",
+		"91"]],
+		"links": [["3407",
+		"3409",
+		"0",
+		"1"],
+		["3408",
+		"3407",
+		null,
+		"0"],
+		["3409",
+		"3406",
+		"1",
+		"2"]]
+	},
+	"status": "success",
+	"msg": null
+}
+
+
+
+校验配置-节点:左边树
+http://localhost:8080/xpress/business/dwTree/listWorkFlowTreeValiNum
+req:
+{}
+res:
+{
+    "sta": 1,
+    "msg": "查询跟随树成功",
+    "data": [
+        {
+            "id": "901",
+            "pid": "68_5",
+            "name": "Acitivity",
+            "value": 3,
+            "type": 68,
+            "tnum":"2",
+            "vname":"test,test2"
+        },
+        {
+            "id": "3200",
+            "icon": "../i/68.png",
+            "name": "s_DW_ODS_CRM_S_PROD_INT",
+            "value": 3359,
+            "pid": "3202",
+            "type": 68,
+            "tnum":0",
+            "vname":""
+        }]
+}
+点击查看相关联的校验配置：校验配置 validateCust/list,传入参数：triggerId = 以上树节点 id
+
+
+
+获取单条记录：
+http://localhost:8080/xpress/business/dwTree/pkone
+req:
+{}
+res:
+{}
+
+验证是否存在：
+http://localhost:8080/xpress1/repository/repositoryConnection/validateExist
+req:
+{}
+res:
+{}
+
+
+删除：
+http://localhost:8080/xpress/business/dwTree/delete
+req:
+{}
+res:
+{}
+

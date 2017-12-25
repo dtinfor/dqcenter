@@ -1,0 +1,189 @@
+
+列表：
+http://www.paiyou365.com/xpress1/repository/repositoryInfodw/list
+req:  sidx 排序字段，sord 顺序 asc 或 desc
+{
+ "id":"2b516976-b2fc-1032-8483-8970969f59e2",
+ "connName":"ds2",
+ "sidx":"id",
+ "sord":"desc"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "id": "2b516976-b2fc-1032-8483-8970969f59e2",
+                "connUrl": "jdbc:mysql://localhost:3305/xpress?useUnicode=true&characterEncoding=UTF-8",
+                "dbPwd": "root",
+                "connName": "datasource3",
+                "dbUser": "root",
+                "dbType": "MySQL",
+                "defaultY": "0"
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增：
+http://www.paiyou365.com/xpress1/repository/repositoryInfodw/create
+req:
+{
+    "connUrl": "dburlxx----",
+    "dbPwd": "root",
+    "connName": "datasource3",
+    "dbUser": "root",
+    "dbType": "MySQL",
+    "defaultY": "0"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connName": "datasource3",
+        "connUrl": "dburlxx----",
+        "dbPwd": "root",
+        "dbType": "MySQL",
+        "dbUser": "root",
+        "defaultY": "0",
+        "id": "5ec51549-aa0d-1034-adc9-d90fbd876f95"
+    }
+}
+
+修改：
+http://www.paiyou365.com/xpress1/repository/repositoryInfodw/update
+req:
+{
+	"connName": "datasource3",
+    "connUrl": "url xyz",
+    "dbPwd": "root",
+    "dbType": "MySQL",
+    "dbUser": "root",
+    "defaultY": "0",
+    "issync": 1,
+    "id": "5ec51549-aa0d-1034-adc9-d90fbd876f95"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connName": "datasource4",
+        "connUrl": "url xyz",
+        "dbPwd": "root",
+        "dbType": "MySQL",
+        "dbUser": "root",
+        "defaultY": "0",
+        "id": "5ec51549-aa0d-1034-adc9-d90fbd876f95"
+    }
+}
+
+获取单条记录：
+http://www.paiyou365.com/xpress1/repository/repositoryInfodw/pkone
+req:
+{
+	"id": "1cba7e15-a75e-1034-8803-749281d19269"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connName": "datasource3",
+        "connUrl": "jdbc:mysql://localhost:3305/xpress?useUnicode=true&characterEncoding=UTF-8",
+        "dbPwd": "root",
+        "dbType": "MySQL",
+        "dbUser": "root",
+        "defaultY": "1",
+        "id": "2b516976-b2fc-1032-8483-8970969f59e2"
+    }
+}
+{
+    "sta": 0,
+    "msg": "查询失败"
+}
+
+
+删除：
+http://www.paiyou365.com/xpress1/repository/repositoryInfodw/delete
+req:
+{
+	"id": "1cba7e15-a75e-1034-8803-749281d19269"
+}
+res:
+{
+    "sta": 1,
+    "msg": "操作成功！",
+    "data": {
+        "connName": "",
+        "connUrl": "",
+        "dbPwd": "",
+        "dbType": "",
+        "dbUser": "",
+        "defaultY": "",
+        "id": "be8f53e5-aa0d-1034-adc9-d90fbd876f95"
+    }
+}
+
+验证是否存在：
+http://www.paiyou365.com/xpress1/repository/repositoryInfodw/validateExist
+req:
+{
+	"connName":"",
+	"id":""
+}
+res:
+{
+    "sta": 1,
+    "msg": "存在相同记录",
+    "data": false
+}
+{
+    "sta": 1,
+    "msg": "不存在相同记录",
+    "data": true
+}
+
+验证库配置是否正确：
+http://www.paiyou365.com/xpress1/repository/repositoryInfodw/test
+req:
+ {
+    "id": "2b516976-b2fc-1032-8483-8970969f59e2",
+    "connUrl": "jdbc:mysql://localhost:3305/xpress?useUnicode=true&characterEncoding=UTF-8",
+    "dbPwd": "root",
+    "connName": "datasource3",
+    "dbUser": "root",
+    "dbType": "MySQL"
+}
+res:
+{
+    "sta": 1,
+    "msg": "测试通过"
+}
+{
+    "sta": 0,
+    "msg": "java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)\r\n\tat com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1073)\r\n\tat com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3609)\r\n\tat com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3541)\r\n\tat com.mysql.jd"
+}
+
+设置为默认库：
+http://www.paiyou365.com/xpress1/repository/repositoryInfodw/setdef
+req:
+{
+    "infodwid": "2b516976-b2fc-1032-8483-8970969f59e2"
+}
+res:
+{
+    "sta": 1,
+    "msg": "设置成功"
+}
+{
+    "sta": 0,
+    "msg": "设置失败"
+}

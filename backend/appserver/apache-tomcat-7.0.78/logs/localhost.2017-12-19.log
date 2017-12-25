@@ -1,0 +1,352 @@
+十二月 19, 2017 7:14:40 上午 org.apache.catalina.core.ApplicationContext log
+信息: No Spring WebApplicationInitializer types detected on classpath
+十二月 19, 2017 7:14:40 上午 org.apache.catalina.core.ApplicationContext log
+信息: Set web app root system property: 'dqcenter.root' = [E:\WorkDir\Project\dw\deploy_network\002_deploy\appserver\apache-tomcat-7.0.78\webapps\dqcenter\]
+十二月 19, 2017 7:14:40 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing log4j from [E:\WorkDir\Project\dw\deploy_network\002_deploy\appserver\apache-tomcat-7.0.78\webapps\dqcenter\WEB-INF\config\log4j.properties]
+十二月 19, 2017 7:14:40 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring root WebApplicationContext
+十二月 19, 2017 7:14:43 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring FrameworkServlet 'springmvc'
+十二月 19, 2017 7:14:45 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: contextInitialized()
+十二月 19, 2017 7:14:45 上午 org.apache.catalina.core.ApplicationContext log
+信息: SessionListener: contextInitialized()
+十二月 19, 2017 7:14:45 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: attributeAdded('org.apache.jasper.compiler.TldLocationsCache', 'org.apache.jasper.compiler.TldLocationsCache@1e2c5ecd')
+十二月 19, 2017 7:15:09 上午 org.apache.catalina.core.ApplicationContext log
+信息: SessionListener: contextDestroyed()
+十二月 19, 2017 7:15:09 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: contextDestroyed()
+十二月 19, 2017 7:15:11 上午 org.apache.catalina.core.ApplicationContext log
+信息: Destroying Spring FrameworkServlet 'springmvc'
+十二月 19, 2017 7:15:11 上午 org.apache.catalina.session.StandardSession writeObject
+警告: Cannot serialize session attribute SPRING_SECURITY_CONTEXT for session 3661BA3F4A0C991B5DEC4E2235D80943
+java.io.NotSerializableException: com.powerdq.entity.system.AuMenu
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1184)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at java.util.ArrayList.writeObject(ArrayList.java:762)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1028)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1496)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1700)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1092)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:405)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:323)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:493)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5825)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1587)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1576)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+十二月 19, 2017 7:15:11 上午 org.apache.catalina.core.ApplicationContext log
+信息: Closing Spring root WebApplicationContext
+十二月 19, 2017 7:15:11 上午 org.apache.catalina.core.ApplicationContext log
+信息: Shutting down log4j
+十二月 19, 2017 7:23:36 上午 org.apache.catalina.core.ApplicationContext log
+信息: No Spring WebApplicationInitializer types detected on classpath
+十二月 19, 2017 7:23:36 上午 org.apache.catalina.core.ApplicationContext log
+信息: Set web app root system property: 'dqcenter.root' = [E:\WorkDir\Project\dw\deploy_network\002_deploy\appserver\apache-tomcat-7.0.78\webapps\dqcenter\]
+十二月 19, 2017 7:23:36 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing log4j from [E:\WorkDir\Project\dw\deploy_network\002_deploy\appserver\apache-tomcat-7.0.78\webapps\dqcenter\WEB-INF\config\log4j.properties]
+十二月 19, 2017 7:23:36 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring root WebApplicationContext
+十二月 19, 2017 7:23:37 上午 org.apache.catalina.core.StandardContext listenerStart
+严重: Exception sending context initialized event to listener instance of class org.springframework.web.context.ContextLoaderListener
+org.springframework.beans.factory.CannotLoadBeanClassException: Error loading class [com.powerdq.comm.util.SpringContextHolder] for bean with name 'com.powerdq.comm.util.SpringContextHolder#0' defined in ServletContext resource [/WEB-INF/classes/config/applicationContext.xml]: problem with class file or dependent class; nested exception is java.lang.ClassFormatError: Incompatible magic value 3456286402 in class file com/powerdq/comm/util/SpringContextHolder
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1278)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:575)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1344)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:910)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:609)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:389)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:294)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:112)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:5118)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5634)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:899)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:875)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:652)
+	at org.apache.catalina.startup.HostConfig.deployDirectory(HostConfig.java:1260)
+	at org.apache.catalina.startup.HostConfig$DeployDirectory.run(HostConfig.java:2002)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.ClassFormatError: Incompatible magic value 3456286402 in class file com/powerdq/comm/util/SpringContextHolder
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+	at org.apache.catalina.loader.WebappClassLoaderBase.findClassInternal(WebappClassLoaderBase.java:3205)
+	at org.apache.catalina.loader.WebappClassLoaderBase.findClass(WebappClassLoaderBase.java:1373)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1861)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1735)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:260)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:416)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doResolveBeanClass(AbstractBeanFactory.java:1296)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1267)
+	... 22 more
+
+十二月 19, 2017 7:23:37 上午 org.apache.catalina.core.ApplicationContext log
+信息: Closing Spring root WebApplicationContext
+十二月 19, 2017 7:23:37 上午 org.apache.catalina.core.ApplicationContext log
+信息: Shutting down log4j
+十二月 19, 2017 7:23:37 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: contextInitialized()
+十二月 19, 2017 7:23:37 上午 org.apache.catalina.core.ApplicationContext log
+信息: SessionListener: contextInitialized()
+十二月 19, 2017 7:23:37 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: attributeAdded('org.apache.jasper.compiler.TldLocationsCache', 'org.apache.jasper.compiler.TldLocationsCache@5451197d')
+十二月 19, 2017 7:24:10 上午 org.apache.catalina.core.ApplicationContext log
+信息: SessionListener: contextDestroyed()
+十二月 19, 2017 7:24:10 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: contextDestroyed()
+十二月 19, 2017 7:28:06 上午 org.apache.catalina.core.ApplicationContext log
+信息: No Spring WebApplicationInitializer types detected on classpath
+十二月 19, 2017 7:28:06 上午 org.apache.catalina.core.ApplicationContext log
+信息: Set web app root system property: 'dqcenter.root' = [E:\WorkDir\Project\dw\deploy_network\002_deploy\appserver\apache-tomcat-7.0.78\webapps\dqcenter\]
+十二月 19, 2017 7:28:06 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing log4j from [E:\WorkDir\Project\dw\deploy_network\002_deploy\appserver\apache-tomcat-7.0.78\webapps\dqcenter\WEB-INF\config\log4j.properties]
+十二月 19, 2017 7:28:06 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring root WebApplicationContext
+十二月 19, 2017 7:28:10 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring FrameworkServlet 'springmvc'
+十二月 19, 2017 7:28:11 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: contextInitialized()
+十二月 19, 2017 7:28:11 上午 org.apache.catalina.core.ApplicationContext log
+信息: SessionListener: contextInitialized()
+十二月 19, 2017 7:28:11 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: attributeAdded('org.apache.jasper.compiler.TldLocationsCache', 'org.apache.jasper.compiler.TldLocationsCache@6965ec38')
+十二月 19, 2017 7:28:31 上午 org.apache.catalina.core.ApplicationContext log
+信息: SessionListener: contextDestroyed()
+十二月 19, 2017 7:28:31 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: contextDestroyed()
+十二月 19, 2017 7:28:33 上午 org.apache.catalina.core.ApplicationContext log
+信息: Destroying Spring FrameworkServlet 'springmvc'
+十二月 19, 2017 7:28:33 上午 org.apache.catalina.session.StandardSession writeObject
+警告: Cannot serialize session attribute SPRING_SECURITY_CONTEXT for session 84D1CED8A6DCB620BDB3B70D6BDCE9CB
+java.io.NotSerializableException: com.powerdq.entity.system.AuMenu
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1184)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at java.util.ArrayList.writeObject(ArrayList.java:762)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1028)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1496)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1700)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1092)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:405)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:323)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:493)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5825)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1587)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1576)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+十二月 19, 2017 7:28:33 上午 org.apache.catalina.core.ApplicationContext log
+信息: Closing Spring root WebApplicationContext
+十二月 19, 2017 7:28:33 上午 org.apache.catalina.core.ApplicationContext log
+信息: Shutting down log4j
+十二月 19, 2017 7:30:32 上午 org.apache.catalina.core.ApplicationContext log
+信息: No Spring WebApplicationInitializer types detected on classpath
+十二月 19, 2017 7:30:32 上午 org.apache.catalina.core.ApplicationContext log
+信息: Set web app root system property: 'dqcenter.root' = [E:\WorkDir\Project\dw\deploy_network\002_deploy\appserver\apache-tomcat-7.0.78\webapps\dqcenter\]
+十二月 19, 2017 7:30:33 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing log4j from [E:\WorkDir\Project\dw\deploy_network\002_deploy\appserver\apache-tomcat-7.0.78\webapps\dqcenter\WEB-INF\config\log4j.properties]
+十二月 19, 2017 7:30:33 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring root WebApplicationContext
+十二月 19, 2017 7:30:36 上午 org.apache.catalina.session.StandardSession readObject
+警告: Cannot deserialize session attribute SPRING_SECURITY_CONTEXT for session 84D1CED8A6DCB620BDB3B70D6BDCE9CB
+十二月 19, 2017 7:30:36 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring FrameworkServlet 'springmvc'
+十二月 19, 2017 7:30:38 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: contextInitialized()
+十二月 19, 2017 7:30:38 上午 org.apache.catalina.core.ApplicationContext log
+信息: SessionListener: contextInitialized()
+十二月 19, 2017 7:30:38 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: attributeAdded('org.apache.jasper.compiler.TldLocationsCache', 'org.apache.jasper.compiler.TldLocationsCache@27e7dff1')
+十二月 19, 2017 7:30:54 上午 org.apache.catalina.core.ApplicationContext log
+信息: SessionListener: contextDestroyed()
+十二月 19, 2017 7:30:54 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: contextDestroyed()
+十二月 19, 2017 7:30:56 上午 org.apache.catalina.core.ApplicationContext log
+信息: Destroying Spring FrameworkServlet 'springmvc'
+十二月 19, 2017 7:30:56 上午 org.apache.catalina.session.StandardSession writeObject
+警告: Cannot serialize session attribute SPRING_SECURITY_CONTEXT for session 231831C418CEEE2CF8C5768733660B03
+java.io.NotSerializableException: com.powerdq.entity.system.AuMenu
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1184)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at java.util.ArrayList.writeObject(ArrayList.java:762)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1028)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1496)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1700)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1092)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:405)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:323)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:493)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5825)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1587)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1576)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+十二月 19, 2017 7:30:56 上午 org.apache.catalina.core.ApplicationContext log
+信息: Closing Spring root WebApplicationContext
+十二月 19, 2017 7:30:56 上午 org.apache.catalina.core.ApplicationContext log
+信息: Shutting down log4j
+十二月 19, 2017 7:34:25 上午 org.apache.catalina.core.ApplicationContext log
+信息: No Spring WebApplicationInitializer types detected on classpath
+十二月 19, 2017 7:34:25 上午 org.apache.catalina.core.ApplicationContext log
+信息: Set web app root system property: 'dqcenter.root' = [E:\WorkDir\Project\dw\deploy_network\002_deploy\appserver\apache-tomcat-7.0.78\webapps\dqcenter\]
+十二月 19, 2017 7:34:25 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing log4j from [E:\WorkDir\Project\dw\deploy_network\002_deploy\appserver\apache-tomcat-7.0.78\webapps\dqcenter\WEB-INF\config\log4j.properties]
+十二月 19, 2017 7:34:25 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring root WebApplicationContext
+十二月 19, 2017 7:34:28 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring FrameworkServlet 'springmvc'
+十二月 19, 2017 7:34:29 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: contextInitialized()
+十二月 19, 2017 7:34:29 上午 org.apache.catalina.core.ApplicationContext log
+信息: SessionListener: contextInitialized()
+十二月 19, 2017 7:34:29 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: attributeAdded('org.apache.jasper.compiler.TldLocationsCache', 'org.apache.jasper.compiler.TldLocationsCache@27009041')
+十二月 19, 2017 7:35:07 上午 org.apache.catalina.core.ApplicationContext log
+信息: SessionListener: contextDestroyed()
+十二月 19, 2017 7:35:07 上午 org.apache.catalina.core.ApplicationContext log
+信息: ContextListener: contextDestroyed()
+十二月 19, 2017 7:35:09 上午 org.apache.catalina.core.ApplicationContext log
+信息: Destroying Spring FrameworkServlet 'springmvc'
+十二月 19, 2017 7:35:09 上午 org.apache.catalina.session.StandardSession writeObject
+警告: Cannot serialize session attribute SPRING_SECURITY_CONTEXT for session 95C0B731820E9FD2DE2C98359741B9F5
+java.io.NotSerializableException: com.powerdq.entity.system.AuMenu
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1184)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at java.util.ArrayList.writeObject(ArrayList.java:762)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at java.io.ObjectStreamClass.invokeWriteObject(ObjectStreamClass.java:1028)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1496)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+	at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+	at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+	at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+	at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+	at org.apache.catalina.session.StandardSession.writeObject(StandardSession.java:1700)
+	at org.apache.catalina.session.StandardSession.writeObjectData(StandardSession.java:1092)
+	at org.apache.catalina.session.StandardManager.doUnload(StandardManager.java:405)
+	at org.apache.catalina.session.StandardManager.unload(StandardManager.java:323)
+	at org.apache.catalina.session.StandardManager.stopInternal(StandardManager.java:493)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.StandardContext.stopInternal(StandardContext.java:5825)
+	at org.apache.catalina.util.LifecycleBase.stop(LifecycleBase.java:221)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1587)
+	at org.apache.catalina.core.ContainerBase$StopChild.call(ContainerBase.java:1576)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+十二月 19, 2017 7:35:09 上午 org.apache.catalina.core.ApplicationContext log
+信息: Closing Spring root WebApplicationContext
+十二月 19, 2017 7:35:09 上午 org.apache.catalina.core.ApplicationContext log
+信息: Shutting down log4j

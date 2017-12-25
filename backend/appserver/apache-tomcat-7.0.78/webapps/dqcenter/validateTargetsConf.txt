@@ -1,0 +1,142 @@
+自动校验推送配置:推送批次
+
+显示选中列表：
+listWorkFlowTrees : 同listWorkFlowTree树  只多一个字段checked = true 表示勾选节点 
+需要 传json参数：
+http://localhost:8080/xpress/business/dwTree/listWorkFlowTrees
+vconfid 为下面记录的主键id, 如果没有必须传空值
+req:
+{
+	"vconfid":"210feed0-4d43-1035-9886-a5e7942f3063"
+}
+
+列表：
+http://localhost:8080/xpress/repository/validateTargetsConf/list
+req:
+{
+	"tsname":"test"
+}
+res:
+{
+	"sta": 1,
+	"data": {
+		"result": [{
+			"id": "sdsdsd",
+			"repstConnId": "dc810f06-b2fb-1032-8483-8970969f59e2",
+			"isDel": "0",
+			"tsname": "test",
+			"nextopt": "001",
+			"nextnum": 3,
+			"isValid": "1",
+			"firstnum": 1,
+			"firstopt": "010"
+		}],
+		"totalCount": 1,
+		"pageNo": 1,
+		"pageSize": 20,
+		"totalPage": 1
+	},
+	"msg": "操作成功！"
+}
+
+新增：
+http://localhost:8080/xpress/repository/validateTargetsConf/create
+req:
+{
+       "tsname": "test1",
+       "nextopt": "010",
+       "nextnum": 3,
+       "isValid": "1",
+       "firstnum": 1,
+       "firstopt": "101"
+   }
+res:
+{
+   "sta": 1,
+   "msg": "操作成功！",
+   "data":
+   {
+       "firstnum": 1,
+       "firstopt": "010",
+       "id": "210feed0-4d43-1035-9886-a5e7942f3063",
+       "isDel": "0",
+       "isValid": "1",
+       "nextnum": 3,
+       "nextopt": "101",
+       "repstConnId": "dc810f06-b2fb-1032-8483-8970969f59e2",
+       "tsname": "test1"
+   }
+}
+
+
+
+修改：
+http://localhost:8080/xpress/repository/validateTargetsConf/update
+req:
+{
+               "id": "210feed0-4d43-1035-9886-a5e7942f3063",
+               "tsname": "test_11",
+               "nextopt": "msg",
+               "nextnum": 3,
+               "isValid": "1",
+               "firstnum": 1,
+               "firstopt": "mail"
+ }
+res:
+{
+   "sta": 1,
+   "msg": "操作成功！",
+   "data":
+   {
+       "firstnum": 1,
+       "firstopt": "mail",
+       "id": "210feed0-4d43-1035-9886-a5e7942f3063",
+       "isDel": "",
+       "isValid": "1",
+       "nextnum": 3,
+       "nextopt": "msg",
+       "repstConnId": "dc810f06-b2fb-1032-8483-8970969f59e2",
+       "tsname": "test_11"
+   }
+}
+
+
+获取单条记录：
+http://localhost:8080/xpress/repository/validateTargetsConf/pkone
+req:
+{}
+res:
+{}
+
+验证是否存在：
+http://localhost:8080/xpress1/repository/validateTargetsConf/validateExist
+req:
+{}
+res:
+{}
+
+
+删除：
+http://localhost:8080/xpress/repository/validateTargetsConf/delete
+req:
+{
+	"id": "210feed0-4d43-1035-9886-a5e7942f3063"
+}
+res:
+{    
+	"sta": 1,
+   "msg": "操作成功！",
+   "data":
+   {
+       "firstnum": 0,
+       "firstopt": "",
+       "id": "210feed0-4d43-1035-9886-a5e7942f3063",
+       "isDel": "",
+       "isValid": "",
+       "nextnum": 0,
+       "nextopt": "",
+       "repstConnId": "",
+       "tsname": ""
+   }
+}
+

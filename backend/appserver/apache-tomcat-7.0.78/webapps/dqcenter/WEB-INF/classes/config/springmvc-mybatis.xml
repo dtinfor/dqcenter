@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p" xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:task="http://www.springframework.org/schema/task" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache" xsi:schemaLocation="http://www.springframework.org/schema/beans               http://www.springframework.org/schema/beans/spring-beans-3.2.xsd               http://www.springframework.org/schema/context               http://www.springframework.org/schema/context/spring-context-3.2.xsd               http://www.springframework.org/schema/jdbc               http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd              http://www.springframework.org/schema/task              http://www.springframework.org/schema/task/spring-task-3.2.xsd             http://www.springframework.org/schema/mvc    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd     http://www.springframework.org/schema/cache    http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">  
+  <!-- MyBatis sqlSessionFactory1 -->  
+  <!-- system mapper -->  
+  <bean id="cityMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.system.AuCityMapper"/> 
+  </bean>  
+  <bean id="menuMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.system.AuMenuMapper"/> 
+  </bean>  
+  <bean id="orgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.system.AuOrgMapper"/> 
+  </bean>  
+  <bean id="postMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.system.AuPostMapper"/> 
+  </bean>  
+  <bean id="roleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.system.AuRoleMapper"/> 
+  </bean>  
+  <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.system.AuUserMapper"/> 
+  </bean>  
+  <bean id="contactMethodMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.system.ContactMethodMapper"/> 
+  </bean>  
+  <bean id="ValidateResultMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateResultMapper"/> 
+  </bean>  
+  <bean id="ValidateCustMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateCustMapper"/> 
+  </bean>  
+  <bean id="RepositoryConnectionMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.RepositoryConnectionMapper"/> 
+  </bean>  
+  <bean id="ValidateSqlMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateSqlMapper"/> 
+  </bean>  
+  <bean id="OpbSessTaskLogMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.OpbSessTaskLogMapper"/> 
+  </bean>  
+  <bean id="OpbTaskInstRunMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory2"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.OpbTaskInstRunMapper"/> 
+  </bean>  
+  <bean id="ValidateSqlVarMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateSqlVarMapper"/> 
+  </bean>  
+  <bean id="RepositoryInfodwMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.RepositoryInfodwMapper"/> 
+  </bean>  
+  <bean id="SchedulerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.SchedulerMapper"/> 
+  </bean>  
+  <bean id="SchedulerLogicMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.SchedulerLogicMapper"/> 
+  </bean>  
+  <bean id="ValidateMsgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateMsgMapper"/> 
+  </bean>  
+  <bean id="ValidateMsgsendtoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateMsgsendtoMapper"/> 
+  </bean>  
+  <bean id="ValidateMsgSendDetailMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateMsgSendDetailMapper"/> 
+  </bean>  
+  <bean id="ValidateOptsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateOptsMapper"/> 
+  </bean>  
+  <bean id="ValidateTargetvMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateTargetvMapper"/> 
+  </bean>  
+  <bean id="ValidateTargetsConfMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateTargetsConfMapper"/> 
+  </bean>  
+  <bean id="ValidateTargetsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>  
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateTargetsMapper"/> 
+  </bean>  
+  <bean id="ValidateTargetsReceiMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+    <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>
+    <property name="mapperInterface" value="com.powerdq.dao.repository.ValidateTargetsReceiMapper"/>
+  </bean>
+</beans>

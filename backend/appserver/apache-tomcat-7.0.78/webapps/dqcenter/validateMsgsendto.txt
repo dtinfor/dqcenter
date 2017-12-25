@@ -1,0 +1,104 @@
+
+验证结果接收人
+
+
+列表：
+http://localhost:8080/xpress/repository/validateMsgsendto/list
+req:
+{
+	"receiveId":"",
+	"sqlId":"",
+	"id":""
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "id": "0724b308-2bff-1033-b2f2-0ca3116ade1e",
+                "receiveId": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+                "contactName": "蒋根亮",
+                "receiveType": "10",
+                "sqlId": "04eba3a7-dfb0-1032-aa89-202e871cf783"
+            }
+        ],
+        "totalCount": 5,
+        "pageNo": 1,
+        "pageSize": 20,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
+
+新增：
+http://localhost:8080/xpress/repository/validateMsgsendto/create
+req:
+{}
+res:
+{}
+
+修改：
+http://localhost:8080/xpress/repository/validateMsgsendto/update
+req:
+{}
+res:
+{}
+
+
+获取单条记录：
+http://localhost:8080/xpress/repository/validateMsgsendto/pkone
+req:
+{}
+res:
+{}
+
+
+删除：
+http://localhost:8080/xpress/repository/validateMsgsendto/delete
+req:
+{}
+res:
+{}
+
+
+报警消息(发送log列表)：
+http://localhost:8080/xpress/repository/validateMsgsendto/listsend
+req:
+{
+    "validate_name": "test001",
+    "contactName": "蒋",
+    "msg": "1sd",
+    "send_time_b": "20161012030206",
+    "send_time_e": "20161013030209",
+    "pageNo":"1",
+    "pageSize":"10"
+}
+res:
+{
+    "sta": 1,
+    "data": {
+        "result": [
+            {
+                "receive_id": "9df724c9-ea2a-1032-b56b-1aa0d54d0224",
+                "msg_type": 1,
+                "rusult_id": "1",
+                "sql_id": "391",
+                "msg": "发送",
+                "id": "uuiscsd",
+                "send_time": "2016-10-12 03:02:06.0",
+                "validate_time_end": "2016-10-12 03:02:08.0",
+                "validate_time": "2016-10-12 03:02:03.0",
+                "email": "jian@263.com",
+                "contactName": "蒋根亮",
+                "validate_name": "test001",
+                "receive_type": "010"
+            }
+        ],
+        "totalCount": 1,
+        "pageNo": 1,
+        "pageSize": 10,
+        "totalPage": 1
+    },
+    "msg": "操作成功！"
+}
